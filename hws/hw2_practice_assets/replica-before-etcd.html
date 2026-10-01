@@ -1,0 +1,6 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Patroni CLI evidence</title><style>
+body{margin:0;background:#10151e;color:#eaf0f7;font:18px system-ui;padding:32px}h1{font-size:24px;margin:0 0 12px}.meta{color:#aebccd;font-size:14px;margin-bottom:24px}pre{font:16px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre;overflow-x:auto;border:1px solid #344258;border-radius:10px;padding:22px;background:#151e2c}</style><h1>Вывод команды в контейнере Patroni</h1><div class="meta">2026-10-01T23:53:04.390+03:00 · exit code 0 · сохранённый фактический вывод</div><pre>$ docker compose exec -T patroni1 etcdctl endpoint health
+http://etcd2:2379 is healthy: successfully committed proposal: took = 588.591µs
+http://etcd1:2379 is healthy: successfully committed proposal: took = 618.404µs
+http://etcd3:2379 is healthy: successfully committed proposal: took = 618.615µs
+</pre></html>

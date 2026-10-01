@@ -1,0 +1,7 @@
+{
+  "started_at": "2026-10-02T00:01:31.099+03:00",
+  "ended_at": "2026-10-02T00:01:31.438+03:00",
+  "command": "docker compose exec -T patroni1 patronictl list -f json",
+  "exit_code": 0,
+  "output": "[{\"Cluster\": \"demo\", \"Member\": \"patroni1\", \"Host\": \"172.19.0.10\", \"Role\": \"Replica\", \"State\": \"streaming\", \"TL\": 3, \"Receive LSN\": \"0/40E9C58\", \"Receive Lag\": 0, \"Replay LSN\": \"0/40E9C58\", \"Replay Lag\": 0}, {\"Cluster\": \"demo\", \"Member\": \"patroni2\", \"Host\": \"172.19.0.6\", \"Role\": \"Leader\", \"State\": \"running\", \"TL\": 3}, {\"Cluster\": \"demo\", \"Member\": \"patroni3\", \"Host\": \"172.19.0.2\", \"Role\": \"Replica\", \"State\": \"streaming\", \"TL\": 3, \"Receive LSN\": \"0/40E9C58\", \"Receive Lag\": 0, \"Replay LSN\": \"0/40E9C58\", \"Replay Lag\": 0}]\n"
+}

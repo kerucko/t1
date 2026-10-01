@@ -1,0 +1,4 @@
+$ docker compose exec -T patroni1 etcdctl endpoint health
+http://etcd3:2379 is healthy: successfully committed proposal: took = 490.443µs
+http://etcd2:2379 is healthy: successfully committed proposal: took = 687.054µs
+http://etcd1:2379 is healthy: successfully committed proposal: took = 746.605µs

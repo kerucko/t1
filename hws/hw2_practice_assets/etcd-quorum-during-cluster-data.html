@@ -1,0 +1,116 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Patroni CLI evidence</title><style>
+body{margin:0;background:#10151e;color:#eaf0f7;font:18px system-ui;padding:32px}h1{font-size:24px;margin:0 0 12px}.meta{color:#aebccd;font-size:14px;margin-bottom:24px}pre{font:16px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre;overflow-x:auto;border:1px solid #344258;border-radius:10px;padding:22px;background:#151e2c}</style><h1>Вывод команды в контейнере Patroni</h1><div class="meta">2026-10-01T23:58:19.859+03:00 · exit code 1 · сохранённый фактический вывод</div><pre>$ docker compose exec -T patroni1 patronictl list -f json
+2026-10-01 20:58:21,876 - ERROR - Request to server http://172.19.0.7:2379 failed: MaxRetryError(&quot;HTTPConnectionPool(host=&#x27;172.19.0.7&#x27;, port=2379): Max retries exceeded with url: /v3beta/kv/range (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPConnection object at 0xf672f29a1590&gt;, &#x27;Connection to 172.19.0.7 timed out. (connect timeout=1.6666666666666667)&#x27;))&quot;)
+2026-10-01 20:58:25,217 - ERROR - Request to server http://172.19.0.4:2379 failed: ReadTimeoutError(&quot;HTTPConnectionPool(host=&#x27;172.19.0.4&#x27;, port=2379): Read timed out. (read timeout=3.333005942333178)&quot;)
+2026-10-01 20:58:26,888 - ERROR - Request to server http://172.19.0.5:2379 failed: MaxRetryError(&quot;HTTPConnectionPool(host=&#x27;172.19.0.5&#x27;, port=2379): Max retries exceeded with url: /v3beta/kv/range (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPConnection object at 0xf672f29ac9d0&gt;, &#x27;Connection to 172.19.0.5 timed out. (connect timeout=1.6666666666666667)&#x27;))&quot;)
+2026-10-01 20:58:28,812 - ERROR - Request to server http://172.19.0.7:2379 failed: MaxRetryError(&quot;HTTPConnectionPool(host=&#x27;172.19.0.7&#x27;, port=2379): Max retries exceeded with url: /v3beta/kv/range (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPConnection object at 0xf672f2998950&gt;, &#x27;Connection to 172.19.0.7 timed out. (connect timeout=1.0)&#x27;))&quot;)
+2026-10-01 20:58:29,907 - ERROR - Request to server http://172.19.0.4:2379 failed: ReadTimeoutError(&quot;HTTPConnectionPool(host=&#x27;172.19.0.4&#x27;, port=2379): Read timed out. (read timeout=1.198401702549745)&quot;)
+2026-10-01 20:58:29,953 - ERROR - get_cluster
+Traceback (most recent call last):
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 855, in _load_cluster
+    cluster = loader(path)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 831, in _postgresql_cluster_loader
+    for node in self._client.get_cluster(path)
+                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 657, in get_cluster
+    ret = self._etcd3.retry(self.prefix, path, serializable).get(&#x27;kvs&#x27;, [])
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd.py&quot;, line 553, in retry
+    return retry(method, *args, **kwargs)
+  File &quot;/patroni/utils.py&quot;, line 763, in __call__
+    return func(*args, **kwargs)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 378, in prefix
+    return self.range(key, prefix_range_end(key), serializable, retry=retry)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 212, in wrapper
+    return self.handle_auth_errors(func, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 349, in handle_auth_errors
+    return func(self, *args, retry=retry, **kwargs)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 375, in range
+    return self.call_rpc(&#x27;/kv/range&#x27;, params, retry)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 665, in call_rpc
+    ret = super(PatroniEtcd3Client, self).call_rpc(method, fields, retry)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 311, in call_rpc
+    return self.api_execute(self.version_prefix + method, self._MPOST, fields)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd.py&quot;, line 353, in api_execute
+    raise ex
+  File &quot;/patroni/dcs/etcd.py&quot;, line 335, in api_execute
+    return self._do_http_request(retry, machines_cache, request_executor, method, path, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd.py&quot;, line 305, in _do_http_request
+    raise etcd.EtcdConnectionFailed(&#x27;No more machines in the cluster&#x27;)
+etcd.EtcdConnectionFailed: No more machines in the cluster
+Traceback (most recent call last):
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 855, in _load_cluster
+    cluster = loader(path)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 831, in _postgresql_cluster_loader
+    for node in self._client.get_cluster(path)
+                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 657, in get_cluster
+    ret = self._etcd3.retry(self.prefix, path, serializable).get(&#x27;kvs&#x27;, [])
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd.py&quot;, line 553, in retry
+    return retry(method, *args, **kwargs)
+  File &quot;/patroni/utils.py&quot;, line 763, in __call__
+    return func(*args, **kwargs)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 378, in prefix
+    return self.range(key, prefix_range_end(key), serializable, retry=retry)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 212, in wrapper
+    return self.handle_auth_errors(func, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 349, in handle_auth_errors
+    return func(self, *args, retry=retry, **kwargs)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 375, in range
+    return self.call_rpc(&#x27;/kv/range&#x27;, params, retry)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 665, in call_rpc
+    ret = super(PatroniEtcd3Client, self).call_rpc(method, fields, retry)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 311, in call_rpc
+    return self.api_execute(self.version_prefix + method, self._MPOST, fields)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd.py&quot;, line 353, in api_execute
+    raise ex
+  File &quot;/patroni/dcs/etcd.py&quot;, line 335, in api_execute
+    return self._do_http_request(retry, machines_cache, request_executor, method, path, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd.py&quot;, line 305, in _do_http_request
+    raise etcd.EtcdConnectionFailed(&#x27;No more machines in the cluster&#x27;)
+etcd.EtcdConnectionFailed: No more machines in the cluster
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;/usr/local/bin/patronictl&quot;, line 5, in &lt;module&gt;
+    ctl(None)
+    ~~~^^^^^^
+  File &quot;/usr/lib/python3/dist-packages/click/core.py&quot;, line 1161, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File &quot;/usr/lib/python3/dist-packages/click/core.py&quot;, line 1082, in main
+    rv = self.invoke(ctx)
+  File &quot;/usr/lib/python3/dist-packages/click/core.py&quot;, line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File &quot;/usr/lib/python3/dist-packages/click/core.py&quot;, line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/usr/lib/python3/dist-packages/click/core.py&quot;, line 788, in invoke
+    return __callback(*args, **kwargs)
+  File &quot;/patroni/ctl.py&quot;, line 1728, in members
+    cluster = dcs.get_cluster()
+  File &quot;/patroni/dcs/__init__.py&quot;, line 1762, in get_cluster
+    cluster = self._get_mpp_cluster() if self.is_mpp_coordinator() else self.__get_postgresql_cluster()
+                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File &quot;/patroni/dcs/__init__.py&quot;, line 1710, in __get_postgresql_cluster
+    cluster = self._load_cluster(path, self._postgresql_cluster_loader)
+  File &quot;/patroni/dcs/etcd3.py&quot;, line 859, in _load_cluster
+    self._handle_exception(e, &#x27;get_cluster&#x27;, raise_ex=Etcd3Error(&#x27;Etcd is not responding properly&#x27;))
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/patroni/dcs/etcd.py&quot;, line 565, in _handle_exception
+    raise raise_ex
+patroni.dcs.etcd3.Etcd3Error: Etcd is not responding properly
+</pre></html>

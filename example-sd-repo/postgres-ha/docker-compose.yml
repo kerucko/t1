@@ -7,8 +7,6 @@
 # $ docker-compose up -d
 # You can read more about it in the:
 # https://github.com/patroni/patroni/blob/master/docker/README.md
-version: "2"
-
 networks:
     demo:
 
@@ -46,8 +44,8 @@ services:
         hostname: haproxy
         container_name: demo-haproxy
         ports:
-            - "5002:5000"
-            - "5001:5001"
+            - "5001:5000" # primary (write)
+            - "5002:5001" # replicas (read)
             - "7001:7000"
         command: haproxy
         environment: &haproxy_env
@@ -86,13 +84,13 @@ services:
             PATRONI_NAME: patroni3
 
     prometheus:
-        image: prom/prometheus:latest
+        image: prom/prometheus:v3.15.0
         networks: [ demo ]
         volumes:
             - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
             - prometheus_data:/prometheus
         ports:
-            - "9090:9090"
+            - "${PROMETHEUS_PORT:-9090}:9090"
         command:
             - '--config.file=/etc/prometheus/prometheus.yml'
             - '--storage.tsdb.path=/prometheus'
@@ -105,19 +103,21 @@ services:
         image: grafana/grafana:9.0.0
         networks: [ demo ]
         ports:
-            - "3000:3000"
+            - "${GRAFANA_PORT:-3000}:3000"
         volumes:
             - grafana_data:/var/lib/grafana
+            - ./grafana/provisioning:/etc/grafana/provisioning:ro
+            - ./grafana_dashboards:/var/lib/grafana/dashboards:ro
         depends_on:
             - prometheus
 
     postgres_exporter:
-        image: prometheuscommunity/postgres-exporter:v0.15.0
+        image: prometheuscommunity/postgres-exporter:v0.17.0
         networks: [ demo ]
         environment:
-            DATA_SOURCE_NAME: "postgresql://postgres:postgres@haproxy:5000/postgres?sslmode=disable"
+            DATA_SOURCE_NAME: "postgresql://postgres:postgres@haproxy:5000/postgres?sslmode=disable&connect_timeout=5"
         ports:
-            - "9187:9187"
+            - "${POSTGRES_EXPORTER_PORT:-9187}:9187"
 
 volumes:
   prometheus_data:

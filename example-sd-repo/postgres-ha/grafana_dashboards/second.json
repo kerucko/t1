@@ -21,12 +21,12 @@
       }
     ]
   },
-  "description": "This dashboard works with postgres_exporter for prometheus",
+  "description": "PostgreSQL statistics collected through HAProxy primary port. Process metrics describe postgres_exporter, not the PostgreSQL server.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 9628,
   "graphTooltip": 0,
-  "id": 6,
+  "id": null,
   "iteration": 1765135279725,
   "links": [],
   "liveNow": false,
@@ -45,7 +45,7 @@
       },
       "id": 34,
       "panels": [],
-      "title": "General Counters, CPU, Memory and File Descriptor Stats",
+      "title": "PostgreSQL counters and exporter process statistics",
       "type": "row"
     },
     {
@@ -87,7 +87,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 0,
         "y": 1
@@ -102,33 +102,37 @@
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
         },
-        "textMode": "name"
+        "textMode": "value_and_name",
+        "text": {
+          "titleSize": 12,
+          "valueSize": 18
+        }
       },
       "pluginVersion": "9.0.0",
       "targets": [
         {
-          "expr": "pg_static{release=\"$release\", instance=\"$instance\"}",
-          "format": "time_series",
+          "refId": "A",
+          "expr": "patroni_postgres_server_version{scope=\"demo\"}",
+          "legendFormat": "{{name}}",
           "instant": true,
-          "intervalFactor": 1,
-          "legendFormat": "{{short_version}}",
-          "refId": "A"
+          "range": false
         }
       ],
       "title": "Version",
-      "type": "stat"
+      "type": "stat",
+      "description": "PostgreSQL server_version_num per Patroni node, e.g. 170000 for PostgreSQL 17.0."
     },
     {
       "datasource": {
         "type": "prometheus",
         "uid": "E_pt0RZDk"
       },
-      "description": "start time of the process",
+      "description": "PostgreSQL postmaster start time per Patroni node.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -163,7 +167,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 4,
         "y": 1
@@ -178,21 +182,25 @@
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "textMode": "value_and_name",
+        "text": {
+          "titleSize": 12,
+          "valueSize": 18
+        }
       },
       "pluginVersion": "9.0.0",
       "targets": [
         {
-          "expr": "pg_postmaster_start_time_seconds{release=\"$release\", instance=\"$instance\"} * 1000",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "refId": "A"
+          "refId": "A",
+          "expr": "patroni_postmaster_start_time{scope=\"demo\"} * 1000",
+          "legendFormat": "{{name}}",
+          "instant": true,
+          "range": false
         }
       ],
       "title": "Start Time",
@@ -232,12 +240,12 @@
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "short"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 8,
         "y": 1
@@ -311,7 +319,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 12,
         "y": 1
@@ -336,7 +344,7 @@
       "pluginVersion": "9.0.0",
       "targets": [
         {
-          "expr": "SUM(pg_stat_database_tup_inserted{release=\"$release\", datname=~\"$datname\", instance=~\"$instance\"})",
+          "expr": "SUM(pg_stat_database_tup_inserted{datname=~\"$datname\", instance=~\"$instance\"})",
           "format": "time_series",
           "intervalFactor": 2,
           "refId": "A",
@@ -385,7 +393,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 16,
         "y": 1
@@ -459,7 +467,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 20,
         "y": 1
@@ -484,7 +492,7 @@
       "pluginVersion": "9.0.0",
       "targets": [
         {
-          "expr": "pg_settings_max_connections{release=\"$release\", instance=\"$instance\"}",
+          "expr": "pg_settings_max_connections{instance=\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -502,7 +510,7 @@
         "type": "prometheus",
         "uid": "E_pt0RZDk"
       },
-      "description": "Average user and system CPU time spent in seconds.",
+      "description": "CPU consumption of the exporter process, not the database.",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -515,7 +523,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 3
+        "y": 6
       },
       "hiddenSeries": false,
       "id": 22,
@@ -547,16 +555,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(process_cpu_seconds_total{release=\"$release\", instance=\"$instance\"}[5m]) * 1000)",
+          "expr": "avg(rate(process_cpu_seconds_total{instance=\"$instance\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 2,
-          "legendFormat": "CPU Time",
+          "legendFormat": "CPU seconds / second",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Average CPU Usage",
+      "title": "Exporter CPU time per second",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -593,7 +601,7 @@
         "type": "prometheus",
         "uid": "E_pt0RZDk"
       },
-      "description": "Virtual and Resident memory size in bytes, averages over 5 min interval",
+      "description": "Memory of the exporter process, not the database; these are gauges.",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -606,7 +614,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 3
+        "y": 6
       },
       "hiddenSeries": false,
       "id": 24,
@@ -638,23 +646,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(rate(process_resident_memory_bytes{release=\"$release\", instance=\"$instance\"}[5m]))",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Resident Mem",
-          "refId": "A"
+          "refId": "A",
+          "expr": "process_resident_memory_bytes{job=\"postgres\",instance=\"$instance\"}",
+          "legendFormat": "Resident memory"
         },
         {
-          "expr": "avg(rate(process_virtual_memory_bytes{release=\"$release\", instance=\"$instance\"}[5m]))",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "Virtual Mem",
-          "refId": "B"
+          "refId": "B",
+          "expr": "process_virtual_memory_bytes{job=\"postgres\",instance=\"$instance\"}",
+          "legendFormat": "Virtual memory"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Average Memory Usage",
+      "title": "Exporter memory usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -704,7 +708,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 3
+        "y": 6
       },
       "hiddenSeries": false,
       "id": 26,
@@ -736,7 +740,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "process_open_fds{release=\"$release\", instance=\"$instance\"}",
+          "expr": "process_open_fds{instance=\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Open FD",
@@ -745,7 +749,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Open File Descriptors",
+      "title": "Exporter open file descriptors",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -783,7 +787,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 13
       },
       "id": 32,
       "panels": [],
@@ -832,7 +836,7 @@
         "h": 3,
         "w": 3,
         "x": 0,
-        "y": 11
+        "y": 14
       },
       "id": 40,
       "links": [],
@@ -905,7 +909,7 @@
         "h": 3,
         "w": 3,
         "x": 3,
-        "y": 11
+        "y": 14
       },
       "id": 42,
       "links": [],
@@ -978,7 +982,7 @@
         "h": 3,
         "w": 3,
         "x": 6,
-        "y": 11
+        "y": 14
       },
       "id": 44,
       "links": [],
@@ -1051,7 +1055,7 @@
         "h": 3,
         "w": 3,
         "x": 9,
-        "y": 11
+        "y": 14
       },
       "id": 46,
       "links": [],
@@ -1126,7 +1130,7 @@
         "h": 3,
         "w": 3,
         "x": 12,
-        "y": 11
+        "y": 14
       },
       "id": 48,
       "links": [],
@@ -1199,7 +1203,7 @@
         "h": 3,
         "w": 3,
         "x": 15,
-        "y": 11
+        "y": 14
       },
       "id": 50,
       "links": [],
@@ -1272,7 +1276,7 @@
         "h": 3,
         "w": 2,
         "x": 18,
-        "y": 11
+        "y": 14
       },
       "id": 52,
       "links": [],
@@ -1345,7 +1349,7 @@
         "h": 3,
         "w": 2,
         "x": 20,
-        "y": 11
+        "y": 14
       },
       "id": 54,
       "links": [],
@@ -1418,7 +1422,7 @@
         "h": 3,
         "w": 2,
         "x": 22,
-        "y": 11
+        "y": 14
       },
       "id": 56,
       "links": [],
@@ -1459,7 +1463,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 17
       },
       "id": 30,
       "panels": [],
@@ -1487,7 +1491,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 15
+        "y": 18
       },
       "hiddenSeries": false,
       "id": 1,
@@ -1522,7 +1526,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pg_stat_activity_count{datname=~\"$datname\", instance=~\"$instance\", state=\"active\"} !=0",
+          "expr": "pg_stat_activity_count{datname=~\"$datname\", instance=~\"$instance\", state=\"active\"}",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 2,
@@ -1583,7 +1587,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 15
+        "y": 18
       },
       "hiddenSeries": false,
       "id": 60,
@@ -1681,7 +1685,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 15
+        "y": 18
       },
       "hiddenSeries": false,
       "id": 8,
@@ -1716,7 +1720,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pg_stat_database_tup_updated{datname=~\"$datname\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_updated{datname=~\"$datname\", instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -1775,7 +1779,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 22
+        "y": 25
       },
       "hiddenSeries": false,
       "id": 5,
@@ -1810,7 +1814,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pg_stat_database_tup_fetched{datname=~\"$datname\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_fetched{datname=~\"$datname\", instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -1869,7 +1873,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 22
+        "y": 25
       },
       "hiddenSeries": false,
       "id": 6,
@@ -1904,7 +1908,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pg_stat_database_tup_inserted{datname=~\"$datname\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_inserted{datname=~\"$datname\", instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -1964,7 +1968,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 22
+        "y": 25
       },
       "hiddenSeries": false,
       "id": 3,
@@ -2000,7 +2004,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pg_locks_count{datname=~\"$datname\", instance=~\"$instance\", mode=~\"$mode\"} != 0",
+          "expr": "pg_locks_count{datname=~\"$datname\", instance=~\"$instance\", mode=~\"$mode\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}},{{mode}}",
@@ -2061,7 +2065,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 29
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 14,
@@ -2096,7 +2100,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pg_stat_database_tup_returned{datname=~\"$datname\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_returned{datname=~\"$datname\", instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -2155,7 +2159,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 29
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 4,
@@ -2250,7 +2254,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 29
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 7,
@@ -2285,7 +2289,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "pg_stat_database_tup_deleted{datname=~\"$datname\", instance=~\"$instance\"} != 0",
+          "expr": "pg_stat_database_tup_deleted{datname=~\"$datname\", instance=~\"$instance\"}",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{datname}}",
@@ -2339,7 +2343,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 36
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 62,
@@ -2426,7 +2430,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 36
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 64,
@@ -2459,39 +2463,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(pg_stat_bgwriter_buffers_backend_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "buffers_backend",
-          "refId": "A"
+          "refId": "A",
+          "expr": "rate(pg_stat_bgwriter_buffers_alloc_total{instance=\"$instance\"}[$__rate_interval])",
+          "legendFormat": "allocated"
         },
         {
-          "expr": "irate(pg_stat_bgwriter_buffers_alloc_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "buffers_alloc",
-          "refId": "B"
-        },
-        {
-          "expr": "irate(pg_stat_bgwriter_buffers_backend_fsync_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "backend_fsync",
-          "refId": "C"
-        },
-        {
-          "expr": "irate(pg_stat_bgwriter_buffers_checkpoint_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "buffers_checkpoint",
-          "refId": "D"
-        },
-        {
-          "expr": "irate(pg_stat_bgwriter_buffers_clean_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "buffers_clean",
-          "refId": "E"
+          "refId": "B",
+          "expr": "rate(pg_stat_bgwriter_buffers_clean_total{instance=\"$instance\"}[$__rate_interval])",
+          "legendFormat": "written by bgwriter"
         }
       ],
       "thresholds": [],
@@ -2522,7 +2501,8 @@
       ],
       "yaxis": {
         "align": false
-      }
+      },
+      "description": "PostgreSQL 17 bgwriter counters; checkpoint and backend counters were removed from this view."
     },
     {
       "aliasColors": {},
@@ -2540,7 +2520,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 36
+        "y": 39
       },
       "hiddenSeries": false,
       "id": 66,
@@ -2634,7 +2614,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 43
+        "y": 46
       },
       "hiddenSeries": false,
       "id": 68,
@@ -2720,7 +2700,7 @@
         "h": 7,
         "w": 16,
         "x": 8,
-        "y": 43
+        "y": 46
       },
       "hiddenSeries": false,
       "id": 70,
@@ -2752,23 +2732,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(pg_stat_bgwriter_checkpoint_write_time_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "write_time - Total amount of time that has been spent in the portion of checkpoint processing where files are written to disk.",
-          "refId": "B"
+          "refId": "A",
+          "expr": "pg_up{instance=\"$instance\"}",
+          "legendFormat": "PostgreSQL via HAProxy"
         },
         {
-          "expr": "irate(pg_stat_bgwriter_checkpoint_sync_time_total{instance=\"$instance\"}[5m])",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "sync_time - Total amount of time that has been spent in the portion of checkpoint processing where files are synchronized to disk.",
-          "refId": "A"
+          "refId": "B",
+          "expr": "up{job=\"postgres\",instance=\"$instance\"}",
+          "legendFormat": "Exporter scrape"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Checkpoint Stats",
+      "title": "PostgreSQL and exporter availability",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2782,19 +2758,24 @@
       },
       "yaxes": [
         {
-          "format": "ms",
+          "format": "short",
           "logBase": 1,
-          "show": true
+          "show": true,
+          "min": 0,
+          "max": 1
         },
         {
           "format": "short",
           "logBase": 1,
-          "show": true
+          "show": true,
+          "min": 0,
+          "max": 1
         }
       ],
       "yaxis": {
         "align": false
-      }
+      },
+      "description": "A healthy HTTP scrape does not imply PostgreSQL is reachable. Compare up with pg_up."
     }
   ],
   "refresh": "10s",
@@ -2886,68 +2867,6 @@
       },
       {
         "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "E_pt0RZDk"
-        },
-        "definition": "",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Namespace",
-        "multi": false,
-        "name": "namespace",
-        "options": [],
-        "query": {
-          "query": "query_result(pg_exporter_last_scrape_duration_seconds)",
-          "refId": "Prometheus-namespace-Variable-Query"
-        },
-        "refresh": 2,
-        "regex": "/.*kubernetes_namespace=\"([^\"]+).*/",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "E_pt0RZDk"
-        },
-        "definition": "",
-        "hide": 0,
-        "includeAll": false,
-        "label": "Release",
-        "multi": false,
-        "name": "release",
-        "options": [],
-        "query": {
-          "query": "query_result(pg_exporter_last_scrape_duration_seconds{kubernetes_namespace=\"$namespace\"})",
-          "refId": "Prometheus-release-Variable-Query"
-        },
-        "refresh": 2,
-        "regex": "/.*release=\"([^\"]+)/",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
           "selected": false,
           "text": "postgres_exporter:9187",
           "value": "postgres_exporter:9187"
@@ -2956,7 +2875,7 @@
           "type": "prometheus",
           "uid": "E_pt0RZDk"
         },
-        "definition": "",
+        "definition": "label_values(pg_up,instance)",
         "hide": 0,
         "includeAll": false,
         "label": "Instance",
@@ -2964,11 +2883,11 @@
         "name": "instance",
         "options": [],
         "query": {
-          "query": "query_result(pg_up{release=\"$release\"})",
+          "query": "label_values(pg_up,instance)",
           "refId": "Prometheus-instance-Variable-Query"
         },
         "refresh": 1,
-        "regex": "/.*instance=\"([^\"]+).*/",
+        "regex": "",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
@@ -2986,7 +2905,7 @@
           "type": "prometheus",
           "uid": "E_pt0RZDk"
         },
-        "definition": "",
+        "definition": "label_values(pg_stat_database_numbackends{instance=~\"$instance\",datname!~\"template.*\"},datname)",
         "hide": 0,
         "includeAll": true,
         "label": "Database",
@@ -2994,7 +2913,7 @@
         "name": "datname",
         "options": [],
         "query": {
-          "query": "label_values(datname)",
+          "query": "label_values(pg_stat_database_numbackends{instance=~\"$instance\",datname!~\"template.*\"},datname)",
           "refId": "Prometheus-datname-Variable-Query"
         },
         "refresh": 1,
@@ -3004,7 +2923,8 @@
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
-        "useTags": false
+        "useTags": false,
+        "allValue": ".*"
       },
       {
         "current": {
@@ -3034,12 +2954,13 @@
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
-        "useTags": false
+        "useTags": false,
+        "allValue": ".*"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {

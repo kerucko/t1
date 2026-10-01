@@ -21,12 +21,12 @@
       }
     ]
   },
-  "description": "Performance metrics for Postgres",
+  "description": "Statistics for the primary reached by postgres_exporter through HAProxy. The exporter connection may move after failover.",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 455,
   "graphTooltip": 0,
-  "id": 7,
+  "id": null,
   "iteration": 1765135241355,
   "links": [],
   "liveNow": false,
@@ -68,7 +68,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -90,7 +90,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -101,7 +101,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "fetched",
           "measurement": "postgresql",
           "policy": "default",
@@ -127,7 +127,6 @@
               }
             ]
           ],
-          "step": 120,
           "tags": [
             {
               "key": "host",
@@ -144,7 +143,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -155,7 +154,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "returned",
           "measurement": "postgresql",
           "policy": "default",
@@ -181,7 +180,6 @@
               }
             ]
           ],
-          "step": 120,
           "tags": [
             {
               "key": "host",
@@ -198,7 +196,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -209,7 +207,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "inserted",
           "measurement": "postgresql",
           "policy": "default",
@@ -235,7 +233,6 @@
               }
             ]
           ],
-          "step": 120,
           "tags": [
             {
               "key": "host",
@@ -252,7 +249,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -263,7 +260,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "updated",
           "measurement": "postgresql",
           "policy": "default",
@@ -289,7 +286,6 @@
               }
             ]
           ],
-          "step": 120,
           "tags": [
             {
               "key": "host",
@@ -306,7 +302,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -317,7 +313,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "deleted",
           "measurement": "postgresql",
           "policy": "default",
@@ -343,7 +339,6 @@
               }
             ]
           ],
-          "step": 120,
           "tags": [
             {
               "key": "host",
@@ -456,7 +451,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -467,7 +462,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "measurement": "postgresql",
           "policy": "default",
           "refId": "A",
@@ -492,7 +487,6 @@
               }
             ]
           ],
-          "step": 1800,
           "tags": [
             {
               "key": "host",
@@ -502,7 +496,7 @@
           ]
         }
       ],
-      "title": "QPS",
+      "title": "Transactions per second",
       "transparent": true,
       "type": "stat"
     },
@@ -545,7 +539,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -560,264 +554,16 @@
       "steppedLine": false,
       "targets": [
         {
-          "alias": "Buffers Allocated",
-          "dsType": "prometheus",
-          "expr": "irate(pg_stat_bgwriter_buffers_alloc{instance='$host'}[5m])",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 2,
-          "legendFormat": "buffers_alloc",
-          "measurement": "postgresql",
-          "policy": "default",
           "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "buffers_alloc"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "step": 240,
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
+          "expr": "rate(pg_stat_bgwriter_buffers_alloc_total{instance=~\"$host\"}[$__rate_interval])",
+          "legendFormat": "allocated",
+          "intervalFactor": 1
         },
         {
-          "alias": "Buffers Allocated",
-          "dsType": "prometheus",
-          "expr": "irate(pg_stat_bgwriter_buffers_backend_fsync{instance='$host'}[5m])",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 2,
-          "legendFormat": "buffers_backend_fsync",
-          "measurement": "postgresql",
-          "policy": "default",
           "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "buffers_alloc"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "step": 240,
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
-        },
-        {
-          "alias": "Buffers Allocated",
-          "dsType": "prometheus",
-          "expr": "irate(pg_stat_bgwriter_buffers_backend{instance='$host'}[5m])",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 2,
-          "legendFormat": "buffers_backend",
-          "measurement": "postgresql",
-          "policy": "default",
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "buffers_alloc"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "step": 240,
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
-        },
-        {
-          "alias": "Buffers Allocated",
-          "dsType": "prometheus",
-          "expr": "irate(pg_stat_bgwriter_buffers_clean{instance='$host'}[5m])",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 2,
-          "legendFormat": "buffers_clean",
-          "measurement": "postgresql",
-          "policy": "default",
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "buffers_alloc"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "step": 240,
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
-        },
-        {
-          "alias": "Buffers Allocated",
-          "dsType": "prometheus",
-          "expr": "irate(pg_stat_bgwriter_buffers_checkpoint{instance='$host'}[5m])",
-          "format": "time_series",
-          "groupBy": [
-            {
-              "params": [
-                "$interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "intervalFactor": 2,
-          "legendFormat": "buffers_checkpoint",
-          "measurement": "postgresql",
-          "policy": "default",
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "buffers_alloc"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              },
-              {
-                "params": [],
-                "type": "difference"
-              }
-            ]
-          ],
-          "step": 240,
-          "tags": [
-            {
-              "key": "host",
-              "operator": "=~",
-              "value": "/^$host$/"
-            }
-          ]
+          "expr": "rate(pg_stat_bgwriter_buffers_clean_total{instance=~\"$host\"}[$__rate_interval])",
+          "legendFormat": "written by bgwriter",
+          "intervalFactor": 1
         }
       ],
       "thresholds": [],
@@ -850,7 +596,8 @@
       ],
       "yaxis": {
         "align": false
-      }
+      },
+      "description": "PostgreSQL 17 bgwriter counters. Checkpoint and backend buffer statistics no longer belong to pg_stat_bgwriter."
     },
     {
       "aliasColors": {},
@@ -887,7 +634,7 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -909,7 +656,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -920,7 +667,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "deadlocks",
           "measurement": "postgresql",
           "policy": "default",
@@ -944,7 +691,6 @@
               }
             ]
           ],
-          "step": 240,
           "tags": [
             {
               "key": "host",
@@ -961,7 +707,7 @@
           "groupBy": [
             {
               "params": [
-                "$interval"
+                "5s"
               ],
               "type": "time"
             },
@@ -972,7 +718,7 @@
               "type": "fill"
             }
           ],
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "conflicts",
           "measurement": "postgresql",
           "policy": "default",
@@ -996,7 +742,6 @@
               }
             ]
           ],
-          "step": 240,
           "tags": [
             {
               "key": "host",
@@ -1073,7 +818,7 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -1090,10 +835,9 @@
         {
           "expr": "sum(pg_stat_database_blks_hit{datname=~\"$db\",instance=~\"$host\"}) / (sum(pg_stat_database_blks_hit{datname=~\"$db\",instance=~\"$host\"}) + sum(pg_stat_database_blks_read{datname=~\"$db\",instance=~\"$host\"}))",
           "format": "time_series",
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "cache hit rate",
-          "refId": "A",
-          "step": 240
+          "refId": "A"
         }
       ],
       "thresholds": [],
@@ -1162,7 +906,7 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
-      "nullPointMode": "connected",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -1179,15 +923,14 @@
         {
           "expr": "pg_stat_database_numbackends{datname=~\"$db\",instance=~\"$host\"}",
           "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "{{__name__}}",
-          "refId": "A",
-          "step": 240
+          "intervalFactor": 1,
+          "legendFormat": "{{datname}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Number of active connections",
+      "title": "Number of connections",
       "tooltip": {
         "msResolution": false,
         "shared": true,
@@ -1217,7 +960,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "5s",
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
@@ -1266,7 +1009,7 @@
           "type": "prometheus",
           "uid": "E_pt0RZDk"
         },
-        "definition": "",
+        "definition": "label_values(pg_stat_database_tup_fetched{instance=~\"$host\",datname!~\"template.*\"},datname)",
         "hide": 0,
         "includeAll": true,
         "label": "db",
@@ -1274,7 +1017,7 @@
         "name": "db",
         "options": [],
         "query": {
-          "query": "label_values(pg_stat_database_tup_fetched{instance=~\"$host\",datname!~\"template.*|postgres\"},datname)",
+          "query": "label_values(pg_stat_database_tup_fetched{instance=~\"$host\",datname!~\"template.*\"},datname)",
           "refId": "Prometheus-db-Variable-Query"
         },
         "refresh": 1,
@@ -1289,7 +1032,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {

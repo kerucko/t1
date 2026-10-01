@@ -1,0 +1,27 @@
+{
+  "scenario": "etcd-quorum",
+  "services": [
+    "etcd1",
+    "etcd2"
+  ],
+  "hold_seconds": 70,
+  "leader_before": "patroni2",
+  "stop_requested_at": "2026-10-01T23:57:00.132+03:00",
+  "stop": {
+    "started_at": "2026-10-01T23:57:00.132+03:00",
+    "ended_at": "2026-10-01T23:57:00.286+03:00",
+    "command": "docker compose stop etcd1 etcd2",
+    "exit_code": 0,
+    "output": " Container demo-etcd1 Stopping \n Container demo-etcd2 Stopping \n Container demo-etcd1 Stopped \n Container demo-etcd2 Stopped \n"
+  },
+  "during_capture_at": "2026-10-01T23:58:10.290+03:00",
+  "start_requested_at": "2026-10-01T23:58:36.128+03:00",
+  "start": {
+    "started_at": "2026-10-01T23:58:36.128+03:00",
+    "ended_at": "2026-10-01T23:58:36.461+03:00",
+    "command": "docker compose start etcd1 etcd2",
+    "exit_code": 0,
+    "output": " Container demo-etcd1 Starting \n Container demo-etcd2 Starting \n Container demo-etcd1 Started \n Container demo-etcd2 Started \n"
+  },
+  "healthy_after_at": "2026-10-01T23:58:58.999+03:00"
+}

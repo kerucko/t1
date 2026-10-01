@@ -1,0 +1,15 @@
+# Local IDE and macOS files
+.idea/
+.DS_Store
+
+# Python environments and bytecode
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Local environment settings
+.env
+
+# Runtime logs
+*.log

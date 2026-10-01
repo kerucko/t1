@@ -1,0 +1,34 @@
+{
+  "docker": {
+    "exit_code": 0,
+    "output": "Client: Docker Engine - Community\n Version:           29.8.0\n API version:       1.54 (downgraded from 1.56)\n Go version:        go1.27.1\n Git commit:        88096ef005\n Built:             Thu Sep  3 21:47:32 2026\n OS/Arch:           darwin/arm64\n Context:           colima\n\nServer: Docker Engine - Community\n Engine:\n  Version:          29.5.2\n  API version:      1.54 (minimum version 1.40)\n  Go version:       go1.26.3\n  Git commit:       568f755\n  Built:            Wed May 20 14:39:25 2026\n  OS/Arch:          linux/arm64\n  Experimental:     false\n containerd:\n  Version:          v2.2.4\n  GitCommit:        193637f7ee8ae5f5aa5248f49e7baa3e6164966e\n runc:\n  Version:          1.3.5\n  GitCommit:        v1.3.5-0-g488fc13e\n docker-init:\n  Version:          0.19.0\n  GitCommit:        de40ad0\n"
+  },
+  "compose": {
+    "exit_code": 0,
+    "output": "Docker Compose version 5.5.1\n"
+  },
+  "patroni": {
+    "exit_code": 0,
+    "output": "patronictl version 4.1.0\n"
+  },
+  "etcd": {
+    "exit_code": 0,
+    "output": "etcd Version: 3.3.13\nGit SHA: 98d3084\nGo Version: go1.10.8\nGo OS/Arch: linux/arm64\n2026-10-01 21:01:29.925827 W | etcdmain: running etcd on unsupported architecture \"arm64\" since ETCD_UNSUPPORTED_ARCH is set\n"
+  },
+  "prometheus": {
+    "exit_code": 0,
+    "output": "prometheus, version 3.15.0 (branch: HEAD, revision: 5241a27fe3c6983549fccc32f6e65917408c63cd)\n  build user:       root@4635dd007a60\n  build date:       20260925-07:36:49\n  go version:       go1.27.1\n  platform:         linux/arm64\n  tags:             netgo,builtinassets\n"
+  },
+  "grafana": {
+    "exit_code": 0,
+    "output": "Version 9.0.0 (commit: b5c56f6371, branch: HEAD)\n"
+  },
+  "haproxy": {
+    "exit_code": 0,
+    "output": "HAProxy version 3.0.11-1+deb13u3 2026/05/20 - https://haproxy.org/\nStatus: long-term supported branch - will stop receiving fixes around Q2 2029.\nKnown bugs: http://www.haproxy.org/bugs/bugs-3.0.11.html\nRunning on: Linux 6.8.0-117-generic #117-Ubuntu SMP PREEMPT_DYNAMIC Thu May  7 17:26:37 UTC 2026 aarch64\n"
+  },
+  "image": {
+    "exit_code": 0,
+    "output": "sha256:e9471c5ab38d8389a25166118c935d4878799a475d9c1973ba83761eeea424cd arm64\n"
+  }
+}

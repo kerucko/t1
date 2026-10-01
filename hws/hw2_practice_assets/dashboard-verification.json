@@ -1,0 +1,546 @@
+[
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Rows",
+    "expr": "sum(irate(pg_stat_database_tup_fetched{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Rows",
+    "expr": "sum(irate(pg_stat_database_tup_returned{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Rows",
+    "expr": "sum(irate(pg_stat_database_tup_inserted{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Rows",
+    "expr": "sum(irate(pg_stat_database_tup_updated{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Rows",
+    "expr": "sum(irate(pg_stat_database_tup_deleted{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Transactions per second",
+    "expr": "sum(irate(pg_stat_database_xact_commit{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m])) + sum(irate(pg_stat_database_xact_rollback{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Buffers",
+    "expr": "rate(pg_stat_bgwriter_buffers_alloc_total{instance=~\"postgres_exporter:9187\"}[1m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Buffers",
+    "expr": "rate(pg_stat_bgwriter_buffers_clean_total{instance=~\"postgres_exporter:9187\"}[1m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Conflicts/Deadlocks",
+    "expr": "sum(rate(pg_stat_database_deadlocks{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Conflicts/Deadlocks",
+    "expr": "sum(rate(pg_stat_database_conflicts{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Cache hit ratio",
+    "expr": "sum(pg_stat_database_blks_hit{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}) / (sum(pg_stat_database_blks_hit{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}) + sum(pg_stat_database_blks_read{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "Postgres Overview",
+    "panel": "Number of connections",
+    "expr": "pg_stat_database_numbackends{datname=~\"postgres\",instance=~\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Version",
+    "expr": "patroni_postgres_server_version{scope=\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Start Time",
+    "expr": "patroni_postmaster_start_time{scope=\"demo\"} * 1000",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Current fetch data",
+    "expr": "SUM(pg_stat_database_tup_fetched{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"})",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Current insert data",
+    "expr": "SUM(pg_stat_database_tup_inserted{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"})",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Current update data",
+    "expr": "SUM(pg_stat_database_tup_updated{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"})",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Max Connections",
+    "expr": "pg_settings_max_connections{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Exporter CPU time per second",
+    "expr": "avg(rate(process_cpu_seconds_total{instance=\"postgres_exporter:9187\"}[5m]))",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Exporter memory usage",
+    "expr": "process_resident_memory_bytes{job=\"postgres\",instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Exporter memory usage",
+    "expr": "process_virtual_memory_bytes{job=\"postgres\",instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Exporter open file descriptors",
+    "expr": "process_open_fds{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Shared Buffers",
+    "expr": "pg_settings_shared_buffers_bytes{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Effective Cache",
+    "expr": "pg_settings_effective_cache_size_bytes{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Maintenance Work Mem",
+    "expr": "pg_settings_maintenance_work_mem_bytes{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Work Mem",
+    "expr": "pg_settings_work_mem_bytes{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Max WAL Size",
+    "expr": "pg_settings_max_wal_size_bytes{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Random Page Cost",
+    "expr": "pg_settings_random_page_cost{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Seq Page Cost",
+    "expr": "pg_settings_seq_page_cost{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Max Worker Processes",
+    "expr": "pg_settings_max_worker_processes{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Max Parallel Workers",
+    "expr": "pg_settings_max_parallel_workers{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Active sessions",
+    "expr": "pg_stat_activity_count{datname=~\"postgres\", instance=~\"postgres_exporter:9187\", state=\"active\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Transactions",
+    "expr": "irate(pg_stat_database_xact_commit{instance=\"postgres_exporter:9187\", datname=~\"postgres\"}[5m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Transactions",
+    "expr": "irate(pg_stat_database_xact_rollback{instance=\"postgres_exporter:9187\", datname=~\"postgres\"}[5m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Update data",
+    "expr": "pg_stat_database_tup_updated{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Fetch data (SELECT)",
+    "expr": "pg_stat_database_tup_fetched{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Insert data",
+    "expr": "pg_stat_database_tup_inserted{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Lock tables",
+    "expr": "pg_locks_count{datname=~\"postgres\", instance=~\"postgres_exporter:9187\", mode=~\".*\"}",
+    "status": "success",
+    "series": 9,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Return data",
+    "expr": "pg_stat_database_tup_returned{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Idle sessions",
+    "expr": "pg_stat_activity_count{datname=~\"postgres\", instance=~\"postgres_exporter:9187\", state=~\"idle|idle in transaction|idle in transaction (aborted)\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Delete data",
+    "expr": "pg_stat_database_tup_deleted{datname=~\"postgres\", instance=~\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Cache Hit Rate",
+    "expr": "pg_stat_database_blks_hit{instance=\"postgres_exporter:9187\", datname=~\"postgres\"} / (pg_stat_database_blks_read{instance=\"postgres_exporter:9187\", datname=~\"postgres\"} + pg_stat_database_blks_hit{instance=\"postgres_exporter:9187\", datname=~\"postgres\"})",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Buffers (bgwriter)",
+    "expr": "rate(pg_stat_bgwriter_buffers_alloc_total{instance=\"postgres_exporter:9187\"}[1m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Buffers (bgwriter)",
+    "expr": "rate(pg_stat_bgwriter_buffers_clean_total{instance=\"postgres_exporter:9187\"}[1m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Conflicts/Deadlocks",
+    "expr": "irate(pg_stat_database_conflicts{instance=\"postgres_exporter:9187\", datname=~\"postgres\"}[5m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Conflicts/Deadlocks",
+    "expr": "irate(pg_stat_database_deadlocks{instance=\"postgres_exporter:9187\", datname=~\"postgres\"}[5m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "Temp File (Bytes)",
+    "expr": "irate(pg_stat_database_temp_bytes{instance=\"postgres_exporter:9187\", datname=~\"postgres\"}[5m])",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "PostgreSQL and exporter availability",
+    "expr": "pg_up{instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Database",
+    "panel": "PostgreSQL and exporter availability",
+    "expr": "up{job=\"postgres\",instance=\"postgres_exporter:9187\"}",
+    "status": "success",
+    "series": 1,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni Version",
+    "expr": "patroni_version{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni DCS Last Seen",
+    "expr": "patroni_dcs_last_seen{name=~\".*\",scope=~\"demo\"}*1000",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni Leader",
+    "expr": "patroni_primary{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni Replica",
+    "expr": "patroni_replica{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni Standby Leader",
+    "expr": "patroni_standby_leader{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni Autofailover",
+    "expr": "patroni_is_paused{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "PostgreSQL Version",
+    "expr": "patroni_postgres_server_version{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "PostgreSQL Uptime",
+    "expr": "patroni_postmaster_start_time{name=~\".*\",scope=~\"demo\"}*1000",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "PostgreSQL Running (Timeline)",
+    "expr": "patroni_postgres_running{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "PostgreSQL Running (Timeline)",
+    "expr": "patroni_postgres_timeline{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "PostgreSQL Pending Restart",
+    "expr": "patroni_pending_restart{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "PostgreSQL WAL Replay",
+    "expr": "patroni_xlog_paused{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Sync Standby",
+    "expr": "patroni_sync_standby{name=~\".*\",scope=~\"demo\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni Primary Node",
+    "expr": "patroni_primary{scope=~\"demo\",name=~\".*\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Patroni Secondary Nodes",
+    "expr": "patroni_replica{scope=~\"demo\",name=~\".*\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "WAL Replay Paused",
+    "expr": "patroni_xlog_paused{scope=~\"demo\",name=~\".*\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Primary WAL Location",
+    "expr": "patroni_xlog_location{scope=~\"demo\",name=~\".*\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Replicas Received WAL Location",
+    "expr": "patroni_xlog_received_location{scope=~\"demo\",name=~\".*\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  },
+  {
+    "dashboard": "PostgreSQL Patroni",
+    "panel": "Replicas Replayed WAL Location",
+    "expr": "patroni_xlog_replayed_location{scope=~\"demo\",name=~\".*\"}",
+    "status": "success",
+    "series": 3,
+    "error": null
+  }
+]

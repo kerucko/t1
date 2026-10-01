@@ -1,0 +1,16 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Patroni CLI evidence</title><style>
+body{margin:0;background:#10151e;color:#eaf0f7;font:18px system-ui;padding:32px}h1{font-size:24px;margin:0 0 12px}.meta{color:#aebccd;font-size:14px;margin-bottom:24px}pre{font:16px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre;overflow-x:auto;border:1px solid #344258;border-radius:10px;padding:22px;background:#151e2c}</style><h1>Вывод команды в контейнере Patroni</h1><div class="meta">2026-10-01T23:50:51.318+03:00 · exit code 0 · сохранённый фактический вывод</div><pre>$ docker compose exec -T patroni1 patronictl show-config
+loop_wait: 10
+maximum_lag_on_failover: 1048576
+postgresql:
+  parameters:
+    max_connections: 100
+  pg_hba:
+  - local all all trust
+  - host replication replicator all md5
+  - host all all all md5
+  use_pg_rewind: true
+retry_timeout: 10
+ttl: 30
+
+</pre></html>

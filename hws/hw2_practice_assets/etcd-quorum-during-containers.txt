@@ -1,0 +1,12 @@
+$ docker compose ps -a
+NAME                              IMAGE                                           COMMAND                  SERVICE             CREATED         STATUS                          PORTS
+demo-etcd1                        patroni                                         "/bin/sh /entrypoint…"   etcd1               8 minutes ago   Exited (0) About a minute ago   
+demo-etcd2                        patroni                                         "/bin/sh /entrypoint…"   etcd2               8 minutes ago   Exited (0) About a minute ago   
+demo-etcd3                        patroni                                         "/bin/sh /entrypoint…"   etcd3               8 minutes ago   Up 8 minutes                    
+demo-haproxy                      patroni                                         "/bin/sh /entrypoint…"   haproxy             8 minutes ago   Up 8 minutes                    0.0.0.0:5001->5000/tcp, [::]:5001->5000/tcp, 0.0.0.0:5002->5001/tcp, [::]:5002->5001/tcp, 0.0.0.0:7001->7000/tcp, [::]:7001->7000/tcp
+demo-patroni1                     patroni                                         "/bin/sh /entrypoint…"   patroni1            8 minutes ago   Up 3 minutes                    
+demo-patroni2                     patroni                                         "/bin/sh /entrypoint…"   patroni2            8 minutes ago   Up 8 minutes                    
+demo-patroni3                     patroni                                         "/bin/sh /entrypoint…"   patroni3            8 minutes ago   Up 5 minutes                    
+postgres-ha-grafana-1             grafana/grafana:9.0.0                           "/run.sh"                grafana             8 minutes ago   Up 8 minutes                    0.0.0.0:3001->3000/tcp, [::]:3001->3000/tcp
+postgres-ha-postgres_exporter-1   prometheuscommunity/postgres-exporter:v0.17.0   "/bin/postgres_expor…"   postgres_exporter   8 minutes ago   Up 8 minutes                    0.0.0.0:9188->9187/tcp, [::]:9188->9187/tcp
+postgres-ha-prometheus-1          prom/prometheus:v3.15.0                         "/bin/prometheus --c…"   prometheus          8 minutes ago   Up 8 minutes                    0.0.0.0:9091->9090/tcp, [::]:9091->9090/tcp

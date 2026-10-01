@@ -1,0 +1,10 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Patroni CLI evidence</title><style>
+body{margin:0;background:#10151e;color:#eaf0f7;font:18px system-ui;padding:32px}h1{font-size:24px;margin:0 0 12px}.meta{color:#aebccd;font-size:14px;margin-bottom:24px}pre{font:16px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre;overflow-x:auto;border:1px solid #344258;border-radius:10px;padding:22px;background:#151e2c}</style><h1>Вывод команды в контейнере Patroni</h1><div class="meta">2026-10-01T23:53:47.406+03:00 · exit code 0 · сохранённый фактический вывод</div><pre>$ docker compose exec -T patroni1 patronictl list
++ Cluster: demo (7691804651080470558) ---------+----+-------------+-----+------------+-----+
+| Member   | Host        | Role    | State     | TL | Receive LSN | Lag | Replay LSN | Lag |
++----------+-------------+---------+-----------+----+-------------+-----+------------+-----+
+| patroni1 | 172.19.0.10 | Leader  | running   |  1 |             |     |            |     |
+| patroni2 | 172.19.0.6  | Replica | streaming |  1 |   0/40A7320 |   0 |  0/40A7320 |   0 |
+| patroni3 | 172.19.0.2  | Replica | streaming |  1 |   0/40A7320 |   0 |  0/40A7320 |   0 |
++----------+-------------+---------+-----------+----+-------------+-----+------------+-----+
+</pre></html>

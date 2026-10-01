@@ -1,0 +1,26 @@
+{
+  "scenario": "haproxy",
+  "services": [
+    "haproxy"
+  ],
+  "hold_seconds": 25,
+  "leader_before": "patroni2",
+  "stop_requested_at": "2026-10-01T23:59:30.554+03:00",
+  "stop": {
+    "started_at": "2026-10-01T23:59:30.554+03:00",
+    "ended_at": "2026-10-01T23:59:30.780+03:00",
+    "command": "docker compose stop haproxy",
+    "exit_code": 0,
+    "output": " Container demo-haproxy Stopping \n Container demo-haproxy Stopped \n"
+  },
+  "during_capture_at": "2026-10-01T23:59:55.785+03:00",
+  "start_requested_at": "2026-10-01T23:59:58.301+03:00",
+  "start": {
+    "started_at": "2026-10-01T23:59:58.301+03:00",
+    "ended_at": "2026-10-01T23:59:58.461+03:00",
+    "command": "docker compose start haproxy",
+    "exit_code": 0,
+    "output": " Container demo-haproxy Starting \n Container demo-haproxy Started \n"
+  },
+  "healthy_after_at": "2026-10-02T00:00:11.953+03:00"
+}

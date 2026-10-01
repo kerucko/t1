@@ -1,0 +1,7 @@
+{
+  "started_at": "2026-10-01T23:53:03.706+03:00",
+  "ended_at": "2026-10-01T23:53:04.047+03:00",
+  "command": "docker compose exec -T patroni1 patronictl list",
+  "exit_code": 0,
+  "output": "+ Cluster: demo (7691804651080470558) ---------+----+-------------+-----+------------+-----+\n| Member   | Host        | Role    | State     | TL | Receive LSN | Lag | Replay LSN | Lag |\n+----------+-------------+---------+-----------+----+-------------+-----+------------+-----+\n| patroni1 | 172.19.0.10 | Leader  | running   |  1 |             |     |            |     |\n| patroni2 | 172.19.0.6  | Replica | streaming |  1 |   0/409FC08 |   0 |  0/409FC08 |   0 |\n| patroni3 | 172.19.0.2  | Replica | streaming |  1 |   0/409FC08 |   0 |  0/409FC08 |   0 |\n+----------+-------------+---------+-----------+----+-------------+-----+------------+-----+\n"
+}

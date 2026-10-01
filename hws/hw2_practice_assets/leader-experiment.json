@@ -1,0 +1,26 @@
+{
+  "scenario": "leader",
+  "services": [
+    "patroni1"
+  ],
+  "hold_seconds": 40,
+  "leader_before": "patroni1",
+  "stop_requested_at": "2026-10-01T23:54:22.110+03:00",
+  "stop": {
+    "started_at": "2026-10-01T23:54:22.110+03:00",
+    "ended_at": "2026-10-01T23:54:23.594+03:00",
+    "command": "docker compose stop patroni1",
+    "exit_code": 0,
+    "output": " Container demo-patroni1 Stopping \n Container demo-patroni1 Stopped \n"
+  },
+  "during_capture_at": "2026-10-01T23:55:03.599+03:00",
+  "start_requested_at": "2026-10-01T23:55:04.713+03:00",
+  "start": {
+    "started_at": "2026-10-01T23:55:04.713+03:00",
+    "ended_at": "2026-10-01T23:55:04.846+03:00",
+    "command": "docker compose start patroni1",
+    "exit_code": 0,
+    "output": " Container demo-patroni1 Starting \n Container demo-patroni1 Started \n"
+  },
+  "healthy_after_at": "2026-10-01T23:55:21.635+03:00"
+}

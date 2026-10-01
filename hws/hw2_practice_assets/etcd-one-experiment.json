@@ -1,0 +1,26 @@
+{
+  "scenario": "etcd-one",
+  "services": [
+    "etcd1"
+  ],
+  "hold_seconds": 25,
+  "leader_before": "patroni2",
+  "stop_requested_at": "2026-10-01T23:55:47.744+03:00",
+  "stop": {
+    "started_at": "2026-10-01T23:55:47.744+03:00",
+    "ended_at": "2026-10-01T23:55:47.986+03:00",
+    "command": "docker compose stop etcd1",
+    "exit_code": 0,
+    "output": " Container demo-etcd1 Stopping \n Container demo-etcd1 Stopped \n"
+  },
+  "during_capture_at": "2026-10-01T23:56:12.991+03:00",
+  "start_requested_at": "2026-10-01T23:56:16.005+03:00",
+  "start": {
+    "started_at": "2026-10-01T23:56:16.005+03:00",
+    "ended_at": "2026-10-01T23:56:16.132+03:00",
+    "command": "docker compose start etcd1",
+    "exit_code": 0,
+    "output": " Container demo-etcd1 Starting \n Container demo-etcd1 Started \n"
+  },
+  "healthy_after_at": "2026-10-01T23:56:29.500+03:00"
+}

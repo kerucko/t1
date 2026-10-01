@@ -1,0 +1,7 @@
+{
+  "started_at": "2026-10-01T23:55:47.590+03:00",
+  "ended_at": "2026-10-01T23:55:47.669+03:00",
+  "command": "docker compose exec -T patroni1 etcdctl endpoint health",
+  "exit_code": 0,
+  "output": "http://etcd1:2379 is healthy: successfully committed proposal: took = 542.897µs\nhttp://etcd3:2379 is healthy: successfully committed proposal: took = 738.834µs\nhttp://etcd2:2379 is healthy: successfully committed proposal: took = 765.907µs\n"
+}

@@ -1,0 +1,14 @@
+$ docker compose exec -T patroni1 patronictl show-config
+loop_wait: 10
+maximum_lag_on_failover: 1048576
+postgresql:
+  parameters:
+    max_connections: 100
+  pg_hba:
+  - local all all trust
+  - host replication replicator all md5
+  - host all all all md5
+  use_pg_rewind: true
+retry_timeout: 10
+ttl: 30
+

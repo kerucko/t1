@@ -1,0 +1,22 @@
+BEGIN
+CREATE TABLE
+NOTICE:  relation "owners" already exists, skipping
+NOTICE:  relation "events" already exists, skipping
+CREATE TABLE
+NOTICE:  relation "idx_events_timestamp" already exists, skipping
+CREATE INDEX
+NOTICE:  relation "idx_events_owner_name" already exists, skipping
+CREATE INDEX
+NOTICE:  relation "idx_owners_name" already exists, skipping
+CREATE INDEX
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+INSERT 0 0
+INSERT 0 0
+COMMIT

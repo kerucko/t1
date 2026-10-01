@@ -1,0 +1,14 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>Patroni CLI evidence</title><style>
+body{margin:0;background:#10151e;color:#eaf0f7;font:18px system-ui;padding:32px}h1{font-size:24px;margin:0 0 12px}.meta{color:#aebccd;font-size:14px;margin-bottom:24px}pre{font:16px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre;overflow-x:auto;border:1px solid #344258;border-radius:10px;padding:22px;background:#151e2c}</style><h1>Вывод команды в контейнере Patroni</h1><div class="meta">2026-10-01T23:53:04.475+03:00 · exit code 0 · сохранённый фактический вывод</div><pre>$ docker compose ps -a
+NAME                              IMAGE                                           COMMAND                  SERVICE             CREATED         STATUS         PORTS
+demo-etcd1                        patroni                                         &quot;/bin/sh /entrypoint…&quot;   etcd1               2 minutes ago   Up 2 minutes   
+demo-etcd2                        patroni                                         &quot;/bin/sh /entrypoint…&quot;   etcd2               2 minutes ago   Up 2 minutes   
+demo-etcd3                        patroni                                         &quot;/bin/sh /entrypoint…&quot;   etcd3               2 minutes ago   Up 2 minutes   
+demo-haproxy                      patroni                                         &quot;/bin/sh /entrypoint…&quot;   haproxy             2 minutes ago   Up 2 minutes   0.0.0.0:5001-&gt;5000/tcp, [::]:5001-&gt;5000/tcp, 0.0.0.0:5002-&gt;5001/tcp, [::]:5002-&gt;5001/tcp, 0.0.0.0:7001-&gt;7000/tcp, [::]:7001-&gt;7000/tcp
+demo-patroni1                     patroni                                         &quot;/bin/sh /entrypoint…&quot;   patroni1            2 minutes ago   Up 2 minutes   
+demo-patroni2                     patroni                                         &quot;/bin/sh /entrypoint…&quot;   patroni2            2 minutes ago   Up 2 minutes   
+demo-patroni3                     patroni                                         &quot;/bin/sh /entrypoint…&quot;   patroni3            2 minutes ago   Up 2 minutes   
+postgres-ha-grafana-1             grafana/grafana:9.0.0                           &quot;/run.sh&quot;                grafana             2 minutes ago   Up 2 minutes   0.0.0.0:3001-&gt;3000/tcp, [::]:3001-&gt;3000/tcp
+postgres-ha-postgres_exporter-1   prometheuscommunity/postgres-exporter:v0.17.0   &quot;/bin/postgres_expor…&quot;   postgres_exporter   2 minutes ago   Up 2 minutes   0.0.0.0:9188-&gt;9187/tcp, [::]:9188-&gt;9187/tcp
+postgres-ha-prometheus-1          prom/prometheus:v3.15.0                         &quot;/bin/prometheus --c…&quot;   prometheus          2 minutes ago   Up 2 minutes   0.0.0.0:9091-&gt;9090/tcp, [::]:9091-&gt;9090/tcp
+</pre></html>

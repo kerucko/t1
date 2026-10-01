@@ -1,0 +1,41 @@
+{
+  "5001": {
+    "address": "172.19.0.10/32",
+    "server_port": 5432,
+    "in_recovery": false,
+    "version": "PostgreSQL 17.11 (Debian 17.11-1.pgdg13+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+    "owners": 3,
+    "events_after_two_init_runs": 2
+  },
+  "5002": {
+    "address": "172.19.0.2/32",
+    "server_port": 5432,
+    "in_recovery": true,
+    "version": "PostgreSQL 17.11 (Debian 17.11-1.pgdg13+2) on aarch64-unknown-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+    "owners": 3,
+    "events_after_two_init_runs": 2,
+    "write_rejected_sqlstate": "25006"
+  },
+  "targets": [
+    {
+      "job": "p1",
+      "health": "up",
+      "lastError": ""
+    },
+    {
+      "job": "p2",
+      "health": "up",
+      "lastError": ""
+    },
+    {
+      "job": "p3",
+      "health": "up",
+      "lastError": ""
+    },
+    {
+      "job": "postgres",
+      "health": "up",
+      "lastError": ""
+    }
+  ]
+}

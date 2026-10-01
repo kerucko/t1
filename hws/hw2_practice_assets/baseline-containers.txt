@@ -1,0 +1,12 @@
+$ docker compose ps -a
+NAME                              IMAGE                                           COMMAND                  SERVICE             CREATED          STATUS          PORTS
+demo-etcd1                        patroni                                         "/bin/sh /entrypoint…"   etcd1               25 seconds ago   Up 24 seconds   
+demo-etcd2                        patroni                                         "/bin/sh /entrypoint…"   etcd2               25 seconds ago   Up 24 seconds   
+demo-etcd3                        patroni                                         "/bin/sh /entrypoint…"   etcd3               25 seconds ago   Up 24 seconds   
+demo-haproxy                      patroni                                         "/bin/sh /entrypoint…"   haproxy             25 seconds ago   Up 24 seconds   0.0.0.0:5001->5000/tcp, [::]:5001->5000/tcp, 0.0.0.0:5002->5001/tcp, [::]:5002->5001/tcp, 0.0.0.0:7001->7000/tcp, [::]:7001->7000/tcp
+demo-patroni1                     patroni                                         "/bin/sh /entrypoint…"   patroni1            25 seconds ago   Up 24 seconds   
+demo-patroni2                     patroni                                         "/bin/sh /entrypoint…"   patroni2            25 seconds ago   Up 24 seconds   
+demo-patroni3                     patroni                                         "/bin/sh /entrypoint…"   patroni3            25 seconds ago   Up 24 seconds   
+postgres-ha-grafana-1             grafana/grafana:9.0.0                           "/run.sh"                grafana             25 seconds ago   Up 24 seconds   0.0.0.0:3001->3000/tcp, [::]:3001->3000/tcp
+postgres-ha-postgres_exporter-1   prometheuscommunity/postgres-exporter:v0.17.0   "/bin/postgres_expor…"   postgres_exporter   25 seconds ago   Up 24 seconds   0.0.0.0:9188->9187/tcp, [::]:9188->9187/tcp
+postgres-ha-prometheus-1          prom/prometheus:v3.15.0                         "/bin/prometheus --c…"   prometheus          25 seconds ago   Up 24 seconds   0.0.0.0:9091->9090/tcp, [::]:9091->9090/tcp
