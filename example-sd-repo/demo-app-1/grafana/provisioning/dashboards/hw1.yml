@@ -1,0 +1,9 @@
+apiVersion: 1
+
+providers:
+  - name: hw1
+    folder: HW1
+    type: file
+    updateIntervalSeconds: 10
+    options:
+      path: /var/lib/grafana/dashboards

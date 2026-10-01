@@ -1,0 +1,547 @@
+[
+  {
+    "scenario": "storm",
+    "baseline": {
+      "testid": "baseline-storm-20261001T195733Z",
+      "start": 1790884653.0180259,
+      "end": 1790884713.651268,
+      "exit_code": 0,
+      "requests": 57074,
+      "successful_requests": 57074,
+      "successes_by_method": {
+        "GET": 11514,
+        "POST": 45560
+      },
+      "success_rps": 950.302932104546,
+      "error_rate": 0,
+      "steady_error_rate": 0,
+      "peak_success_rps_30s": 961.4355146666667,
+      "max_vus": 50.0,
+      "max_pool_open": 11.0,
+      "max_pool_in_use": 10.0,
+      "max_pg_connections": 24.0,
+      "max_pool_wait_count": 0.0,
+      "max_pool_wait_seconds": 0.0,
+      "max_sql_p95_seconds": 0.004988577653982658,
+      "pg_connection_metric_missing_samples": 0,
+      "latency_ms": {
+        "GET": {
+          "max": 158.511321,
+          "p(90)": 2.9099816000000005,
+          "p(95)": 3.8429711,
+          "p(99)": 17.816944889999842,
+          "min": 0.308841,
+          "avg": 1.6551358641653675,
+          "med": 0.5273435
+        },
+        "POST": {
+          "p(90)": 3.393308,
+          "p(95)": 4.621353349999997,
+          "p(99)": 19.803354719999987,
+          "min": 0.292922,
+          "avg": 2.0736165178226678,
+          "med": 0.6357275,
+          "max": 203.62092
+        }
+      },
+      "steady_latency_ms": {
+        "GET": {
+          "min": 0.309923,
+          "avg": 2.264812882404801,
+          "med": 0.541533,
+          "max": 158.511321,
+          "p(90)": 3.0553700000000004,
+          "p(95)": 4.420457549999997,
+          "p(99)": 45.98216825999993
+        },
+        "POST": {
+          "min": 0.292922,
+          "avg": 2.8154873899060027,
+          "med": 0.658388,
+          "max": 203.62092,
+          "p(90)": 3.7043488,
+          "p(95)": 5.563562199999994,
+          "p(99)": 64.0307864399999
+        }
+      },
+      "max_cpu_percent": {
+        "grafana": 0.02,
+        "prometheus": 0.18,
+        "nginx": 11.96,
+        "postgres_exporter": 0.0,
+        "backend": 35.65,
+        "db": 67.99,
+        "node_exporter": 0.0,
+        "k6": 29.38
+      },
+      "max_memory_usage": {
+        "grafana": "53.29MiB",
+        "prometheus": "35.12MiB",
+        "nginx": "6.379MiB",
+        "postgres_exporter": "9.195MiB",
+        "backend": "10.66MiB",
+        "db": "64.33MiB",
+        "node_exporter": "7.816MiB",
+        "k6": "57.08MiB"
+      },
+      "pg_deadlocks_delta": 0.0,
+      "negative_timing_minima_ms": {}
+    },
+    "experiment": {
+      "testid": "storm-storm-20261001T195835Z",
+      "start": 1790884715.413538,
+      "end": 1790884896.167458,
+      "exit_code": 0,
+      "requests": 171732,
+      "successful_requests": 152464,
+      "successes_by_method": {
+        "GET": 30307,
+        "POST": 122157
+      },
+      "success_rps": 846.8833130383894,
+      "error_rate": 0.11219807607201919,
+      "steady_error_rate": 0,
+      "peak_success_rps_30s": 989.64,
+      "max_vus": 1000.0,
+      "max_pool_open": 935.0,
+      "max_pool_in_use": 933.0,
+      "max_pg_connections": 85.0,
+      "max_pool_wait_count": 0.0,
+      "max_pool_wait_seconds": 0.0,
+      "max_sql_p95_seconds": 2.3235367660677904,
+      "pg_connection_metric_missing_samples": 3,
+      "latency_ms": {
+        "GET": {
+          "p(90)": 687.866614,
+          "p(95)": 955.7146851,
+          "p(99)": 1835.7879397,
+          "min": 0.300334,
+          "avg": 147.20063407348243,
+          "med": 0.809753,
+          "max": 4164.647133
+        },
+        "POST": {
+          "p(90)": 737.9650238000002,
+          "p(95)": 1020.7407523999996,
+          "p(99)": 1876.4750702399995,
+          "min": 0.298083,
+          "avg": 158.67002310089134,
+          "med": 1.008589,
+          "max": 4473.238326
+        }
+      },
+      "steady_latency_ms": {
+        "GET": {
+          "p(90)": 3.4123975000000004,
+          "p(95)": 5.236081349999998,
+          "p(99)": 24.941057629999968,
+          "min": 0.300334,
+          "avg": 1.771957772751324,
+          "med": 0.571709,
+          "max": 107.322323
+        },
+        "POST": {
+          "med": 0.677709,
+          "max": 140.104287,
+          "p(90)": 3.9969896,
+          "p(95)": 6.592299999999993,
+          "p(99)": 29.136274499999967,
+          "min": 0.298083,
+          "avg": 2.1716306312462987
+        }
+      },
+      "max_cpu_percent": {
+        "grafana": 3.59,
+        "prometheus": 1.22,
+        "nginx": 127.39,
+        "postgres_exporter": 1.01,
+        "backend": 303.36,
+        "db": 233.85,
+        "node_exporter": 0.0,
+        "k6": 45.11
+      },
+      "max_memory_usage": {
+        "grafana": "57.02MiB",
+        "prometheus": "48.13MiB",
+        "nginx": "25.2MiB",
+        "postgres_exporter": "9.141MiB",
+        "backend": "79.12MiB",
+        "db": "370.4MiB",
+        "node_exporter": "8.047MiB",
+        "k6": "412.4MiB"
+      },
+      "pg_deadlocks_delta": 0.0,
+      "negative_timing_minima_ms": {}
+    },
+    "recovery_p95_ratio": {
+      "GET": 1.1845111712474201,
+      "POST": 1.1849063177544776
+    },
+    "recovered_by_criterion": true
+  },
+  {
+    "scenario": "wave",
+    "baseline": {
+      "testid": "baseline-wave-20261001T200138Z",
+      "start": 1790884898.047248,
+      "end": 1790884958.716457,
+      "exit_code": 0,
+      "requests": 57558,
+      "successful_requests": 57558,
+      "successes_by_method": {
+        "GET": 11420,
+        "POST": 46138
+      },
+      "success_rps": 958.4383902442262,
+      "error_rate": 0,
+      "steady_error_rate": 0,
+      "peak_success_rps_30s": 959.4000000000001,
+      "max_vus": 50.0,
+      "max_pool_open": 5.0,
+      "max_pool_in_use": 5.0,
+      "max_pg_connections": 14.0,
+      "max_pool_wait_count": 0.0,
+      "max_pool_wait_seconds": 0.0,
+      "max_sql_p95_seconds": 0.004959102779332213,
+      "pg_connection_metric_missing_samples": 0,
+      "latency_ms": {
+        "GET": {
+          "p(95)": 3.6696460499999968,
+          "p(99)": 12.760708669999996,
+          "min": 0.300083,
+          "avg": 1.30627949334501,
+          "med": 0.47904,
+          "max": 118.469505,
+          "p(90)": 2.7963716
+        },
+        "POST": {
+          "min": 0.297457,
+          "avg": 1.623414074949071,
+          "med": 0.5616224999999999,
+          "max": 122.408117,
+          "p(90)": 3.224032,
+          "p(95)": 4.455398149999999,
+          "p(99)": 17.774191649999988
+        }
+      },
+      "steady_latency_ms": {
+        "GET": {
+          "med": 0.490207,
+          "max": 118.469505,
+          "p(90)": 2.7590918,
+          "p(95)": 3.6558745999999993,
+          "p(99)": 10.832945799999985,
+          "min": 0.311582,
+          "avg": 1.2622327506721631
+        },
+        "POST": {
+          "min": 0.300166,
+          "avg": 1.5436495740047405,
+          "med": 0.574915,
+          "max": 122.408117,
+          "p(90)": 3.2618972000000004,
+          "p(95)": 4.441264099999998,
+          "p(99)": 13.159422399999993
+        }
+      },
+      "max_cpu_percent": {
+        "grafana": 0.02,
+        "prometheus": 0.3,
+        "nginx": 12.53,
+        "postgres_exporter": 0.0,
+        "backend": 38.86,
+        "db": 76.07,
+        "node_exporter": 0.0,
+        "k6": 25.62
+      },
+      "max_memory_usage": {
+        "grafana": "55.67MiB",
+        "prometheus": "49.95MiB",
+        "nginx": "6.684MiB",
+        "postgres_exporter": "9.039MiB",
+        "backend": "17.34MiB",
+        "db": "57.32MiB",
+        "node_exporter": "8.004MiB",
+        "k6": "58.25MiB"
+      },
+      "pg_deadlocks_delta": 0.0,
+      "negative_timing_minima_ms": {}
+    },
+    "experiment": {
+      "testid": "wave-wave-20261001T200240Z",
+      "start": 1790884960.408648,
+      "end": 1790885301.107486,
+      "exit_code": 0,
+      "requests": 314398,
+      "successful_requests": 267194,
+      "successes_by_method": {
+        "GET": 53434,
+        "POST": 213760
+      },
+      "success_rps": 785.8498428823875,
+      "error_rate": 0.1501409042042252,
+      "steady_error_rate": 0,
+      "peak_success_rps_30s": 1445.12,
+      "max_vus": 500.0,
+      "max_pool_open": 461.0,
+      "max_pool_in_use": 461.0,
+      "max_pg_connections": 142.0,
+      "max_pool_wait_count": 0.0,
+      "max_pool_wait_seconds": 0.0,
+      "max_sql_p95_seconds": 1.7982083333333327,
+      "pg_connection_metric_missing_samples": 2,
+      "latency_ms": {
+        "GET": {
+          "avg": 119.45072722433108,
+          "med": 2.6179765,
+          "max": 2363.871006,
+          "p(90)": 447.91593890000007,
+          "p(95)": 587.4800049499997,
+          "p(99)": 856.77473735,
+          "min": 0.301125
+        },
+        "POST": {
+          "min": 0.28325,
+          "avg": 132.36911324256013,
+          "med": 3.2877885,
+          "max": 2516.905448,
+          "p(90)": 493.20646260000007,
+          "p(95)": 641.96540785,
+          "p(99)": 915.5217356999999
+        }
+      },
+      "steady_latency_ms": {
+        "GET": {
+          "p(90)": 2.8230561,
+          "p(95)": 3.5344300499999974,
+          "p(99)": 6.892456089999997,
+          "min": 0.301125,
+          "avg": 1.0638681562928678,
+          "med": 0.504041,
+          "max": 52.861162
+        },
+        "POST": {
+          "p(99)": 8.738223499999998,
+          "min": 0.28325,
+          "avg": 1.2779111397426086,
+          "med": 0.5845,
+          "max": 53.900578,
+          "p(90)": 3.2123226000000007,
+          "p(95)": 4.0583426
+        }
+      },
+      "max_cpu_percent": {
+        "grafana": 4.29,
+        "prometheus": 2.9,
+        "nginx": 94.38,
+        "postgres_exporter": 0.83,
+        "backend": 307.56,
+        "db": 245.24,
+        "node_exporter": 0.01,
+        "k6": 42.33
+      },
+      "max_memory_usage": {
+        "grafana": "59.6MiB",
+        "prometheus": "50.97MiB",
+        "nginx": "17.91MiB",
+        "postgres_exporter": "9.5MiB",
+        "backend": "54.56MiB",
+        "db": "346.6MiB",
+        "node_exporter": "8.531MiB",
+        "k6": "300.7MiB"
+      },
+      "pg_deadlocks_delta": 0.0,
+      "negative_timing_minima_ms": {}
+    },
+    "recovery_p95_ratio": {
+      "GET": 0.9667809858686067,
+      "POST": 0.9137809660992692
+    },
+    "recovered_by_criterion": true
+  },
+  {
+    "scenario": "read-heavy",
+    "baseline": {
+      "testid": "baseline-read-heavy-20261001T200823Z",
+      "start": 1790885303.133732,
+      "end": 1790885363.693811,
+      "exit_code": 0,
+      "requests": 57805,
+      "successful_requests": 57805,
+      "successes_by_method": {
+        "GET": 46262,
+        "POST": 11543
+      },
+      "success_rps": 964.123770626712,
+      "error_rate": 0,
+      "steady_error_rate": 0,
+      "peak_success_rps_30s": 971.6878840207221,
+      "max_vus": 50.0,
+      "max_pool_open": 4.0,
+      "max_pool_in_use": 2.0,
+      "max_pg_connections": 5.0,
+      "max_pool_wait_count": 0.0,
+      "max_pool_wait_seconds": 0.0,
+      "max_sql_p95_seconds": 0.004921237780960089,
+      "pg_connection_metric_missing_samples": 0,
+      "latency_ms": {
+        "GET": {
+          "min": 0.281375,
+          "avg": 1.2029700390817437,
+          "med": 0.4877785,
+          "max": 240.994877,
+          "p(90)": 2.818781,
+          "p(95)": 3.5186493999999993,
+          "p(99)": 7.227551109999988
+        },
+        "POST": {
+          "min": 0.322966,
+          "avg": 1.693054785497702,
+          "med": 0.720164,
+          "max": 242.79052,
+          "p(90)": 3.3988386000000004,
+          "p(95)": 4.2642033,
+          "p(99)": 9.070176139999996
+        }
+      },
+      "steady_latency_ms": {
+        "GET": {
+          "min": 0.287721,
+          "avg": 1.2975482156820408,
+          "med": 0.48111899999999996,
+          "max": 240.994877,
+          "p(90)": 2.7732563000000003,
+          "p(95)": 3.472996599999997,
+          "p(99)": 6.8724146699999995
+        },
+        "POST": {
+          "p(90)": 3.3491768000000004,
+          "p(95)": 4.136342399999999,
+          "p(99)": 8.185282079999995,
+          "min": 0.322966,
+          "avg": 1.8428031304119208,
+          "med": 0.713895,
+          "max": 242.79052
+        }
+      },
+      "max_cpu_percent": {
+        "grafana": 0.03,
+        "prometheus": 0.09,
+        "nginx": 14.14,
+        "postgres_exporter": 0.0,
+        "backend": 44.16,
+        "db": 62.27,
+        "node_exporter": 0.0,
+        "k6": 31.88
+      },
+      "max_memory_usage": {
+        "grafana": "55.67MiB",
+        "prometheus": "42.42MiB",
+        "nginx": "6.332MiB",
+        "postgres_exporter": "9.168MiB",
+        "backend": "17.4MiB",
+        "db": "64.7MiB",
+        "node_exporter": "8.723MiB",
+        "k6": "62.11MiB"
+      },
+      "pg_deadlocks_delta": 0.0,
+      "negative_timing_minima_ms": {}
+    },
+    "experiment": {
+      "testid": "read-heavy-read-heavy-20261001T200925Z",
+      "start": 1790885365.526366,
+      "end": 1790885704.568883,
+      "exit_code": 0,
+      "requests": 339081,
+      "successful_requests": 281995,
+      "successes_by_method": {
+        "GET": 225727,
+        "POST": 56268
+      },
+      "success_rps": 833.2408735384175,
+      "error_rate": 0.16835505380720242,
+      "steady_error_rate": 0,
+      "peak_success_rps_30s": 1657.1485943775097,
+      "max_vus": 500.0,
+      "max_pool_open": 434.0,
+      "max_pool_in_use": 434.0,
+      "max_pg_connections": 129.0,
+      "max_pool_wait_count": 0.0,
+      "max_pool_wait_seconds": 0.0,
+      "max_sql_p95_seconds": 1.7988521089161762,
+      "pg_connection_metric_missing_samples": 2,
+      "latency_ms": {
+        "GET": {
+          "p(90)": 442.89790740000024,
+          "p(95)": 579.1006513999996,
+          "p(99)": 948.2854431799999,
+          "min": -24.645178,
+          "avg": 116.12637535583174,
+          "med": 2.550849,
+          "max": 2995.593377
+        },
+        "POST": {
+          "p(95)": 620.8947099999999,
+          "p(99)": 994.1210560799999,
+          "min": 0.011261,
+          "avg": 127.21454391760773,
+          "med": 3.5493379999999997,
+          "max": 2649.066077,
+          "p(90)": 475.7673753
+        }
+      },
+      "steady_latency_ms": {
+        "GET": {
+          "p(95)": 3.3703517499999993,
+          "p(99)": 5.967846209999996,
+          "min": 0.280781,
+          "avg": 0.9574538486540847,
+          "med": 0.47264300000000004,
+          "max": 32.919967,
+          "p(90)": 2.7072712
+        },
+        "POST": {
+          "p(90)": 3.314467,
+          "p(95)": 4.0476128,
+          "p(99)": 7.721155479999989,
+          "min": 0.333704,
+          "avg": 1.335210002442219,
+          "med": 0.694435,
+          "max": 31.886292
+        }
+      },
+      "max_cpu_percent": {
+        "grafana": 0.03,
+        "prometheus": 0.3,
+        "nginx": 76.14,
+        "postgres_exporter": 1.76,
+        "backend": 362.21,
+        "db": 217.69,
+        "node_exporter": 0.01,
+        "k6": 62.93
+      },
+      "max_memory_usage": {
+        "grafana": "61.88MiB",
+        "prometheus": "47.3MiB",
+        "nginx": "17.32MiB",
+        "postgres_exporter": "9.672MiB",
+        "backend": "52.41MiB",
+        "db": "316.7MiB",
+        "node_exporter": "8.387MiB",
+        "k6": "307.9MiB"
+      },
+      "pg_deadlocks_delta": 0.0,
+      "negative_timing_minima_ms": {
+        "http_req_duration{expected_response:true}": -24.645178,
+        "http_req_duration": -24.645178,
+        "orders_get_success_duration": -24.645178,
+        "http_req_receiving": -99.299361
+      }
+    },
+    "recovery_p95_ratio": {
+      "GET": 0.9704448746077098,
+      "POST": 0.9785487777800987
+    },
+    "recovered_by_criterion": true
+  }
+]

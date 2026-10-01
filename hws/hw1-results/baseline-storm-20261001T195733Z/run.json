@@ -1,0 +1,33 @@
+{
+  "testid": "baseline-storm-20261001T195733Z",
+  "scenario": "baseline",
+  "baseline_for": "storm",
+  "start": 1790884653.0180259,
+  "end": 1790884713.651268,
+  "exit_code": 0,
+  "user_ids": "1,2",
+  "command": [
+    "docker",
+    "compose",
+    "-p",
+    "hw1",
+    "-f",
+    "/Users/paveltsykin/.codex/worktrees/f6e2/t1/example-sd-repo/demo-app-1/docker-compose.yaml",
+    "run",
+    "--rm",
+    "--no-deps",
+    "-e",
+    "SCENARIO=baseline",
+    "-e",
+    "TESTID=baseline-storm-20261001T195733Z",
+    "-e",
+    "USER_IDS=1,2",
+    "-e",
+    "BASELINE_FOR=storm",
+    "k6",
+    "run",
+    "--out",
+    "experimental-prometheus-rw",
+    "/scripts/load-script.js"
+  ]
+}

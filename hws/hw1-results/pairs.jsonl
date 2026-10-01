@@ -1,0 +1,3 @@
+{"scenario": "storm", "baseline": "baseline-storm-20261001T195733Z", "experiment": "storm-storm-20261001T195835Z"}
+{"scenario": "wave", "baseline": "baseline-wave-20261001T200138Z", "experiment": "wave-wave-20261001T200240Z"}
+{"scenario": "read-heavy", "baseline": "baseline-read-heavy-20261001T200823Z", "experiment": "read-heavy-read-heavy-20261001T200925Z"}

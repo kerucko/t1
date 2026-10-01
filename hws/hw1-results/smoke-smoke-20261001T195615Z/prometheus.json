@@ -1,0 +1,987 @@
+{
+  "pool_open": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "db_pool_open_connections",
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "1"
+            ],
+            [
+              1790884570.963,
+              "1"
+            ],
+            [
+              1790884575.963,
+              "1"
+            ],
+            [
+              1790884580.963,
+              "1"
+            ],
+            [
+              1790884585.963,
+              "1"
+            ],
+            [
+              1790884590.963,
+              "1"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pool_in_use": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "db_pool_in_use_connections",
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0"
+            ],
+            [
+              1790884570.963,
+              "0"
+            ],
+            [
+              1790884575.963,
+              "0"
+            ],
+            [
+              1790884580.963,
+              "0"
+            ],
+            [
+              1790884585.963,
+              "0"
+            ],
+            [
+              1790884590.963,
+              "0"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pool_idle": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "db_pool_idle_connections",
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "1"
+            ],
+            [
+              1790884570.963,
+              "1"
+            ],
+            [
+              1790884575.963,
+              "1"
+            ],
+            [
+              1790884580.963,
+              "1"
+            ],
+            [
+              1790884585.963,
+              "1"
+            ],
+            [
+              1790884590.963,
+              "1"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pool_wait_count": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "db_pool_wait_count_total",
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0"
+            ],
+            [
+              1790884570.963,
+              "0"
+            ],
+            [
+              1790884575.963,
+              "0"
+            ],
+            [
+              1790884580.963,
+              "0"
+            ],
+            [
+              1790884585.963,
+              "0"
+            ],
+            [
+              1790884590.963,
+              "0"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pool_wait_seconds": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "db_pool_wait_duration_seconds_total",
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0"
+            ],
+            [
+              1790884570.963,
+              "0"
+            ],
+            [
+              1790884575.963,
+              "0"
+            ],
+            [
+              1790884580.963,
+              "0"
+            ],
+            [
+              1790884585.963,
+              "0"
+            ],
+            [
+              1790884590.963,
+              "0"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pg_connections": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "pg_stat_database_numbackends",
+            "datid": "16384",
+            "datname": "demo",
+            "instance": "postgres_exporter:9187",
+            "job": "postgres"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "3"
+            ],
+            [
+              1790884570.963,
+              "3"
+            ],
+            [
+              1790884575.963,
+              "3"
+            ],
+            [
+              1790884580.963,
+              "3"
+            ],
+            [
+              1790884585.963,
+              "3"
+            ],
+            [
+              1790884590.963,
+              "3"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pg_up": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "pg_up",
+            "instance": "postgres_exporter:9187",
+            "job": "postgres"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "1"
+            ],
+            [
+              1790884570.963,
+              "1"
+            ],
+            [
+              1790884575.963,
+              "1"
+            ],
+            [
+              1790884580.963,
+              "1"
+            ],
+            [
+              1790884585.963,
+              "1"
+            ],
+            [
+              1790884590.963,
+              "1"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pg_scrape_error": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "pg_exporter_last_scrape_error",
+            "instance": "postgres_exporter:9187",
+            "job": "postgres"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0"
+            ],
+            [
+              1790884570.963,
+              "0"
+            ],
+            [
+              1790884575.963,
+              "0"
+            ],
+            [
+              1790884580.963,
+              "0"
+            ],
+            [
+              1790884585.963,
+              "0"
+            ],
+            [
+              1790884590.963,
+              "0"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pg_deadlocks": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "pg_stat_database_deadlocks",
+            "datid": "16384",
+            "datname": "demo",
+            "instance": "postgres_exporter:9187",
+            "job": "postgres"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0"
+            ],
+            [
+              1790884570.963,
+              "0"
+            ],
+            [
+              1790884575.963,
+              "0"
+            ],
+            [
+              1790884580.963,
+              "0"
+            ],
+            [
+              1790884585.963,
+              "0"
+            ],
+            [
+              1790884590.963,
+              "0"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "pg_transactions_rps": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "datid": "16384",
+            "datname": "demo",
+            "instance": "postgres_exporter:9187",
+            "job": "postgres"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "5.39935207775067"
+            ],
+            [
+              1790884570.963,
+              "5.48"
+            ],
+            [
+              1790884575.963,
+              "5.481315515723773"
+            ],
+            [
+              1790884580.963,
+              "5.72"
+            ],
+            [
+              1790884585.963,
+              "12.643034328238777"
+            ],
+            [
+              1790884590.963,
+              "17.96431143474434"
+            ]
+          ]
+        }
+      ]
+    },
+    "infos": [
+      "PromQL info: metric might not be a counter, name does not end in _total/_sum/_count/_bucket: \"pg_stat_database_xact_commit\" (1:6)"
+    ]
+  },
+  "pg_cache_hit_ratio": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "datid": "16384",
+            "datname": "demo",
+            "instance": "postgres_exporter:9187",
+            "job": "postgres"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0.9929511793746572"
+            ],
+            [
+              1790884570.963,
+              "0.9932722513089005"
+            ],
+            [
+              1790884575.963,
+              "0.9935535656056388"
+            ],
+            [
+              1790884580.963,
+              "0.9942852759559698"
+            ],
+            [
+              1790884585.963,
+              "0.9945424244089153"
+            ],
+            [
+              1790884590.963,
+              "0.9947362861770298"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "sql_p95": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {},
+          "values": [
+            [
+              1790884565.963,
+              "NaN"
+            ],
+            [
+              1790884570.963,
+              "NaN"
+            ],
+            [
+              1790884575.963,
+              "NaN"
+            ],
+            [
+              1790884580.963,
+              "0.004749999999999999"
+            ],
+            [
+              1790884585.963,
+              "0.0048388955914907324"
+            ],
+            [
+              1790884590.963,
+              "0.004802524800312904"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "backend_rps": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "method": "GET"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "0.8658733333333333"
+            ],
+            [
+              1790884590.963,
+              "1.4375766666666667"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "method": "POST"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "5.028573333333334"
+            ],
+            [
+              1790884590.963,
+              "6.706106666666665"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "backend_success_rps": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "method": "GET"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "0.8658733333333333"
+            ],
+            [
+              1790884590.963,
+              "1.4375766666666667"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "method": "POST"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "5.028573333333334"
+            ],
+            [
+              1790884590.963,
+              "6.706106666666665"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "backend_errors_rps": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": []
+    }
+  },
+  "backend_success_p95": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "method": "GET"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "0.00475"
+            ],
+            [
+              1790884590.963,
+              "0.00475"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "method": "POST"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "0.004863969769702366"
+            ],
+            [
+              1790884590.963,
+              "0.004816250520371865"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "backend_success_p99": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "method": "GET"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "0.00495"
+            ],
+            [
+              1790884590.963,
+              "0.00495"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "method": "POST"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "0.01219668439515682"
+            ],
+            [
+              1790884590.963,
+              "0.007730244995302308"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "backend_memory": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "process_resident_memory_bytes",
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "14811136"
+            ],
+            [
+              1790884570.963,
+              "15073280"
+            ],
+            [
+              1790884575.963,
+              "15073280"
+            ],
+            [
+              1790884580.963,
+              "15466496"
+            ],
+            [
+              1790884585.963,
+              "17039360"
+            ],
+            [
+              1790884590.963,
+              "17301504"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "backend_cpu_cores": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0"
+            ],
+            [
+              1790884570.963,
+              "0.00040000000000000034"
+            ],
+            [
+              1790884575.963,
+              "0.00040000000000000034"
+            ],
+            [
+              1790884580.963,
+              "0.0012002400480096017"
+            ],
+            [
+              1790884585.963,
+              "0.005200000000000001"
+            ],
+            [
+              1790884590.963,
+              "0.0088"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "k6_vus": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "k6_vus",
+            "testid": "smoke-smoke-20261001T195615Z",
+            "workload": "smoke"
+          },
+          "values": [
+            [
+              1790884580.963,
+              "1"
+            ],
+            [
+              1790884585.963,
+              "1"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "k6_rps": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "method": "GET"
+          },
+          "values": [
+            [
+              1790884590.963,
+              "1.6120239459941408"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "method": "POST"
+          },
+          "values": [
+            [
+              1790884590.963,
+              "3.5"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "k6_errors": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": []
+    }
+  },
+  "k6_success_p95": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "k6_orders_get_success_duration_p95",
+            "method": "GET",
+            "name": "orders",
+            "phase": "smoke",
+            "scenario": "orders",
+            "testid": "smoke-smoke-20261001T195615Z",
+            "workload": "smoke"
+          },
+          "values": [
+            [
+              1790884580.963,
+              "0.004190783249999999"
+            ],
+            [
+              1790884585.963,
+              "0.004190783249999999"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "k6_orders_post_success_duration_p95",
+            "method": "POST",
+            "name": "orders",
+            "phase": "smoke",
+            "scenario": "orders",
+            "testid": "smoke-smoke-20261001T195615Z",
+            "workload": "smoke"
+          },
+          "values": [
+            [
+              1790884585.963,
+              "0.005164063599999999"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "targets": {
+    "status": "success",
+    "data": {
+      "resultType": "matrix",
+      "result": [
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "backend:8081",
+            "job": "backend"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "1"
+            ],
+            [
+              1790884570.963,
+              "1"
+            ],
+            [
+              1790884575.963,
+              "1"
+            ],
+            [
+              1790884580.963,
+              "1"
+            ],
+            [
+              1790884585.963,
+              "1"
+            ],
+            [
+              1790884590.963,
+              "1"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "cadvisor:8080",
+            "job": "cadvisor"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "0"
+            ],
+            [
+              1790884570.963,
+              "0"
+            ],
+            [
+              1790884575.963,
+              "0"
+            ],
+            [
+              1790884580.963,
+              "0"
+            ],
+            [
+              1790884585.963,
+              "0"
+            ],
+            [
+              1790884590.963,
+              "0"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "node_exporter:9100",
+            "job": "node"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "1"
+            ],
+            [
+              1790884570.963,
+              "1"
+            ],
+            [
+              1790884575.963,
+              "1"
+            ],
+            [
+              1790884580.963,
+              "1"
+            ],
+            [
+              1790884585.963,
+              "1"
+            ],
+            [
+              1790884590.963,
+              "1"
+            ]
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "instance": "postgres_exporter:9187",
+            "job": "postgres"
+          },
+          "values": [
+            [
+              1790884565.963,
+              "1"
+            ],
+            [
+              1790884570.963,
+              "1"
+            ],
+            [
+              1790884575.963,
+              "1"
+            ],
+            [
+              1790884580.963,
+              "1"
+            ],
+            [
+              1790884585.963,
+              "1"
+            ],
+            [
+              1790884590.963,
+              "1"
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "checked_at": 1790885948.088365,
+  "api_post_status": 200,
+  "api_get_rows": 100,
+  "pool_metrics": [
+    "db_pool_open_connections",
+    "db_pool_in_use_connections",
+    "db_pool_idle_connections",
+    "db_pool_wait_count_total",
+    "db_pool_wait_duration_seconds_total"
+  ],
+  "backend_image": "sha256:e8efa1977a396f551e92da6e429a944269c3277d136cf2708fb6c35aa8f58513",
+  "container_state": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 322126,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-01T20:17:08.335537611Z",
+    "FinishedAt": "0001-01-01T00:00:00Z"
+  }
+}

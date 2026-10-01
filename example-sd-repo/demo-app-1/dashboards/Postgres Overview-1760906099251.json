@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 455,
   "graphTooltip": 0,
-  "id": 5,
+  "id": null,
   "iteration": 1760906090909,
   "links": [],
   "liveNow": false,
@@ -38,7 +38,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KmvkIqeNz"
+        "uid": "prometheus"
       },
       "editable": true,
       "error": false,
@@ -387,7 +387,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "KmvkIqeNz"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -513,7 +513,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KmvkIqeNz"
+        "uid": "prometheus"
       },
       "decimals": 1,
       "editable": true,
@@ -859,7 +859,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KmvkIqeNz"
+        "uid": "prometheus"
       },
       "editable": true,
       "error": false,
@@ -1045,7 +1045,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KmvkIqeNz"
+        "uid": "prometheus"
       },
       "editable": true,
       "error": false,
@@ -1134,7 +1134,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "KmvkIqeNz"
+        "uid": "prometheus"
       },
       "editable": true,
       "error": false,
@@ -1234,7 +1234,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "KmvkIqeNz"
+          "uid": "prometheus"
         },
         "definition": "",
         "hide": 0,
@@ -1264,7 +1264,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "KmvkIqeNz"
+          "uid": "prometheus"
         },
         "definition": "",
         "hide": 0,

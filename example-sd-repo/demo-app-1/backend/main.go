@@ -68,6 +68,8 @@ func main() {
         time.Sleep(1 * time.Second)
     }
 
+    registerDBPoolMetrics(db)
+
     s := &Server{db: db}
 
     r := mux.NewRouter()
@@ -92,6 +94,27 @@ func main() {
     addr := ":8081"
     log.Println("listening on", addr)
     log.Fatal(http.ListenAndServe(addr, handler))
+}
+
+// Read the live pool state at scrape time without changing its configuration.
+func registerDBPoolMetrics(db *sql.DB) {
+    prometheus.MustRegister(
+        prometheus.NewGaugeFunc(prometheus.GaugeOpts{
+            Name: "db_pool_open_connections", Help: "Open and opening database connections tracked by the application pool",
+        }, func() float64 { return float64(db.Stats().OpenConnections) }),
+        prometheus.NewGaugeFunc(prometheus.GaugeOpts{
+            Name: "db_pool_in_use_connections", Help: "Non-idle database connections tracked by the pool, including pending opens",
+        }, func() float64 { return float64(db.Stats().InUse) }),
+        prometheus.NewGaugeFunc(prometheus.GaugeOpts{
+            Name: "db_pool_idle_connections", Help: "Idle database connections",
+        }, func() float64 { return float64(db.Stats().Idle) }),
+        prometheus.NewCounterFunc(prometheus.CounterOpts{
+            Name: "db_pool_wait_count_total", Help: "Total waits for a connection in the application pool",
+        }, func() float64 { return float64(db.Stats().WaitCount) }),
+        prometheus.NewCounterFunc(prometheus.CounterOpts{
+            Name: "db_pool_wait_duration_seconds_total", Help: "Total time spent waiting for a connection in the application pool",
+        }, func() float64 { return db.Stats().WaitDuration.Seconds() }),
+    )
 }
 
 func instrumentHandler(h http.Handler) http.Handler {

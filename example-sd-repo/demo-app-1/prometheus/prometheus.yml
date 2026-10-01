@@ -20,9 +20,3 @@ scrape_configs:
     static_configs:
       - targets: ['cadvisor:8080']
     metrics_path: /metrics
-
-  - job_name: 'k6'          
-    static_configs:
-      - targets: ['k6:6565']  
-    scrape_interval: 5s     
-    metrics_path: /metrics  

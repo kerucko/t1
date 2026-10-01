@@ -1,0 +1,31 @@
+# macOS and local IDE settings
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local environment configuration
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Python virtual environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Runtime logs
+*.log
+
+# Homework reports, screenshots, and measurements stay in version control.
+# Raw k6 output is ignored by demo-app-1/k6/results/.gitignore.

@@ -63,7 +63,7 @@ Prometheus :9090
   └── scrape: cAdvisor :8080
 
 Grafana :3000  ◄── datasource ── Prometheus
-k6 :6565       ──► remote_write ──► Prometheus
+k6            ──► remote_write ──► Prometheus
 ```
 
 **Альтернативный режим** (`docker-compose-lb.yaml`): HAProxy заменяет Nginx и балансирует трафик между тремя инстансами Backend по алгоритму round-robin.
@@ -121,7 +121,8 @@ docker-compose up -d --build
 docker ps
 ```
 
-Через 15–20 секунд все контейнеры должны иметь статус `Up`.
+После запуска дождитесь готовности API и Prometheus. k6 запускается отдельно;
+cAdvisor включается только профилем `linux-monitoring`.
 
 ### Проверка работоспособности
 
@@ -153,7 +154,7 @@ curl -s http://localhost:8081/api/users | jq
 | node-exporter | http://localhost:9100/metrics | Метрики хост-машины |
 | postgres-exporter | http://localhost:9187/metrics | Метрики PostgreSQL |
 | cAdvisor | http://localhost:8088 | Метрики контейнеров |
-| k6 | http://localhost:6565 | Статус нагрузочного теста |
+| k6 | отдельный Compose run | Генератор нагрузки; метрики отправляются через remote write |
 | PostgreSQL | localhost:5432 | БД (`demo` / `demo`) |
 
 ---
@@ -219,7 +220,7 @@ Base URL: `http://localhost:8081/api`
 |---|---|---|---|
 | `http_request_duration_seconds` | histogram | `method`, `path`, `status` | Время обработки HTTP-запроса |
 | `http_requests_total` | counter | `method`, `path`, `status` | Количество HTTP-запросов |
-| `db_query_duration_seconds` | histogram | `method`, `path`, `status` | Время выполнения SQL-запроса |
+| `db_query_duration_seconds` | histogram | — | Длительность SQL API-вызова приложения (все операции вместе) |
 
 ---
 
@@ -266,8 +267,8 @@ Prometheus собирает метрики с четырёх источнико�
 ### Grafana
 
 1. Откройте http://localhost:3000 (admin / admin)
-2. Добавьте Data Source → Prometheus → URL: `http://prometheus:9090` → **Save & Test**
-3. Импортируйте дашборды из папки [dashboards/](dashboards/) или по ID с grafana.com:
+2. Datasource Prometheus и дашборды из `dashboards/` добавляются автоматически.
+3. Для ручного импорта можно использовать дашборды из папки [dashboards/](dashboards/) или по ID с grafana.com:
    - **Node Exporter Full** — состояние хоста
    - **Postgres Overview** — производительность базы
    - **k6 Prometheus** — результаты нагрузочных тестов
@@ -284,10 +285,11 @@ Prometheus собирает метрики с четырёх источнико�
 
 | Этап | Длительность | VU |
 |---|---|---|
-| Разогрев | 30 с | 0 → 1000 |
-| Снижение | 30 с | 1000 → 100 |
-| Плато | 1 мин | 100 → 200 |
-| Завершение | 2 мин | 200 → 0 |
+| Рост («Волна», по умолчанию) | 2 мин | 0 → 500 |
+| Плато | 1 мин | 500 |
+| Снижение | 30 с | 500 → 50 |
+| Восстановление | 2 мин | 50 |
+| Завершение | 10 с | 50 → 0 |
 
 **Распределение запросов**: 80 % — `POST /api/orders`, 20 % — `GET /api/orders`.
 
@@ -295,7 +297,7 @@ Prometheus собирает метрики с четырёх источнико�
 
 ```bash
 # Запустить нагрузочный тест вручную
-docker-compose run --rm k6 run /scripts/load-script.js
+python3 tools/run_hw1.py --scenario wave
 ```
 
 ---
@@ -344,4 +346,78 @@ JDBC URL: jdbc:postgresql://localhost:5432/demo
 docker logs demo-app-1-nginx-1 -f
 docker logs demo-app-1-backend-1 -f
 docker logs demo-app-1-db-1 -f
+```
+
+## HW1: воспроизводимые эксперименты
+
+Для домашней работы используется отдельный Compose-проект `hw1`. k6 запускается
+только явно: сервис вынесен в профиль `load-test`. POST и GET направляются через
+Nginx (`http://nginx/api`), а результаты отправляются в Prometheus по сети Compose.
+Образ k6 закреплён на версии 0.57.0; его remote-write latency имеет значения в
+секундах, хотя имена метрик этой версии не содержат суффикса `_seconds`.
+Итоговый JSON k6 содержит latency в миллисекундах.
+
+```bash
+docker compose -p hw1 up -d --build
+python3 tools/run_hw1.py --scenario smoke
+python3 tools/run_hw1.py --scenario all
+python3 tools/analyze_hw1.py
+```
+
+`run_hw1.py` перед каждым из трёх экспериментов очищает **только БД проекта hw1**
+и создаёт двух пользователей и 1000 заказов. Затем выполняет эталон при 50 VU
+и основной сценарий. Для отдельного прогона используйте `--scenario storm`,
+`--scenario wave` или `--scenario read-heavy`.
+Прогоны выполняются последовательно; нельзя запускать несколько экземпляров runner
+одновременно. Исходное ограничение пула приложения не меняется.
+
+| Сценарий | POST / GET | Разгон | Плато | Спад до 50 VU | Восстановление | Завершение |
+|---|---|---|---|---|---|---|
+| storm | 80% / 20% | 0 → 1000 за 10 с | 30 с | 10 с | 120 с | 10 с |
+| wave | 80% / 20% | 0 → 500 за 120 с | 60 с | 30 с | 120 с | 10 с |
+| read-heavy | 20% / 80% | 0 → 500 за 120 с | 60 с | 30 с | 120 с | 10 с |
+
+Нагрузка использует `ramping-vus`, паузу 50 мс и таймаут запроса 10 с. При снижении
+VU допускается завершение текущей итерации в течение 10 с. Поэтому VU и RPS не
+эквивалентны, а фактическая длительность может немного превышать профиль.
+Проверяются HTTP-статус и JSON ответа. Фаза `steady` — последние 30 с эталона или
+последние 60 с восстановления; отдельные метрики этой фазы позволяют сравнить p95.
+
+Runner сохраняет `summary.json`, `prometheus.json`, `resources.jsonl`, время и команду
+запуска, а также последние 10 000 строк логов каждого сервиса в
+`../../hws/hw1-results/<testid>/`. `pairs.jsonl` связывает эксперимент с его эталоном.
+Ошибки приложения не прерывают нагрузку; ненулевой exit code самого k6 считается
+ошибкой выполнения, а не доказательством перегрузки приложения.
+
+Дашборды и datasource создаются автоматически. Откройте
+[HW1 Overview](http://localhost:3000/d/hw1-overview/hw1-application-and-db-pool)
+(`admin` / `admin`), выберите `testid` и временной диапазон прогона. Метрики backend
+и БД не имеют `testid`: они сравниваются по этому диапазону времени.
+Latency-гистограммы backend используют окно 30 с; p95 k6 в remote write накопительный
+для отдельного набора labels. Эти графики нельзя сравнивать как одинаковые оценки.
+
+В `/metrics` добавлены показатели `sql.DB.Stats()`: открытые, занятые и свободные
+соединения, накопленные число и время ожиданий в пуле. При неограниченном пуле
+ожидания могут оставаться нулевыми даже при отказе PostgreSQL принимать соединения.
+OpenConnections/InUse также учитывают pending opens; их нельзя приравнивать к
+числу установленных сессий PostgreSQL.
+
+На macOS cAdvisor по умолчанию отключён; профиль `linux-monitoring` включает его
+на совместимом Linux-стенде. Его выключенный scrape target может показывать `DOWN`.
+Runner собирает CPU/RAM контейнеров через `docker stats` каждые 5 с, включая k6.
+Node-exporter в этой конфигурации не является мониторингом macOS-хоста: его
+показатели относятся к Linux VM/пространствам имён контейнера.
+
+Для графиков по сохранённым данным установите matplotlib в отдельное окружение:
+
+```bash
+python3 -m venv /tmp/hw1-plot
+/tmp/hw1-plot/bin/python -m pip install matplotlib
+MPLCONFIGDIR=/tmp/hw1-matplotlib /tmp/hw1-plot/bin/python tools/analyze_hw1.py --plots
+```
+
+Отчёт: `../../hws/HW_1_SOLUTION.md`. Для остановки стенда без удаления данных:
+
+```bash
+docker compose -p hw1 stop
 ```
